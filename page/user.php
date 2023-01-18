@@ -11,16 +11,60 @@
                     </div>
                     <div class="card-content">
                         <div class="card-body">
-                            <form class="form form-horizontal">
+                            <form class="form form-horizontal" action="auth/simpan_registrasi.php" method="post">
                                 <div class="form-body">
                                     <div class="row">
+                                        <div class="col-md-4">
+                                            <label>ID User</label>
+                                        </div>
+                                        <?php
+                                        include 'koneksi.php';
+                                        $querykode = mysqli_query($koneksi, "SELECT max(id_user) as idterbesar FROM user");
+                                        $data = mysqli_fetch_array($querykode);
+                                        $id_user = $data['idterbesar'];
+
+                                        $urutan = (int) substr($id_user, 3, 3);
+                                        $urutan++;
+
+                                        $huruf = "USR";
+                                        $iduser = $huruf . sprintf("%03s", $urutan);
+
+                                        ?>
+
+
+
+                                        <div class="col-md-8">
+                                            <div class="form-group has-icon-left">
+                                                <div class="position-relative">
+                                                    <input type="text" class="form-control" placeholder="id_user" id="first-name-icon" name="id_user" value="<?php echo $iduser ?>" readonly>
+                                                    <div class="form-control-icon">
+                                                        <i class="bi bi-person-badge-fill"></i>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+
+                                        <div class="col-md-4">
+                                            <label>Username</label>
+                                        </div>
+                                        <div class="col-md-8">
+                                            <div class="form-group has-icon-left">
+                                                <div class="position-relative">
+                                                    <input type="text" class="form-control" placeholder="username" id="first-name-icon" name="username">
+                                                    <div class="form-control-icon">
+                                                        <i class="bi bi-file-person"></i>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
                                         <div class="col-md-4">
                                             <label>Name</label>
                                         </div>
                                         <div class="col-md-8">
                                             <div class="form-group has-icon-left">
                                                 <div class="position-relative">
-                                                    <input type="text" class="form-control" placeholder="Name" id="first-name-icon">
+                                                    <input type="text" class="form-control" placeholder="Name" id="first-name-icon" name="nama_user">
                                                     <div class="form-control-icon">
                                                         <i class="bi bi-person"></i>
                                                     </div>
@@ -28,27 +72,18 @@
                                             </div>
                                         </div>
                                         <div class="col-md-4">
-                                            <label>Email</label>
+                                            <label>Jenis Kelamin</label>
                                         </div>
                                         <div class="col-md-8">
                                             <div class="form-group has-icon-left">
                                                 <div class="position-relative">
-                                                    <input type="email" class="form-control" placeholder="Email" id="first-name-icon">
+                                                    <select class="form-control select2 input100" name="jenis_kelamin">
+                                                        <option value="">Jenis Kelamin </option>
+                                                        <option value="Laki-laki">Laki - Laki </option>
+                                                        <option value="Perempuan">Perempuan</option>
+                                                    </select>
                                                     <div class="form-control-icon">
-                                                        <i class="bi bi-envelope"></i>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-4">
-                                            <label>Mobile</label>
-                                        </div>
-                                        <div class="col-md-8">
-                                            <div class="form-group has-icon-left">
-                                                <div class="position-relative">
-                                                    <input type="number" class="form-control" placeholder="Mobile">
-                                                    <div class="form-control-icon">
-                                                        <i class="bi bi-phone"></i>
+                                                        <i class="bi bi-gender-ambiguous"></i>
                                                     </div>
                                                 </div>
                                             </div>
@@ -59,9 +94,22 @@
                                         <div class="col-md-8">
                                             <div class="form-group has-icon-left">
                                                 <div class="position-relative">
-                                                    <input type="password" class="form-control" placeholder="Password">
+                                                    <input type="password" class="form-control" placeholder="Password" name="password">
                                                     <div class="form-control-icon">
                                                         <i class="bi bi-lock"></i>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <label>No HP</label>
+                                        </div>
+                                        <div class="col-md-8">
+                                            <div class="form-group has-icon-left">
+                                                <div class="position-relative">
+                                                    <input type="number" class="form-control" placeholder="NO HP" name="no_hp">
+                                                    <div class="form-control-icon">
+                                                        <i class="bi bi-phone"></i>
                                                     </div>
                                                 </div>
                                             </div>
@@ -79,13 +127,14 @@
                                             <button type="reset" class="btn btn-light-secondary me-1 mb-1">Reset</button>
                                         </div>
                                     </div>
-                                </div>
                             </form>
                         </div>
+                        </form>
                     </div>
                 </div>
             </div>
         </div>
+    </div>
     </div>
 </section>
 
