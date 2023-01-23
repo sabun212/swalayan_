@@ -174,7 +174,7 @@ include 'koneksi.php';
 
                         echo "<td>";
                         echo " <a href='' class='badge bg-warning text-decoration-none'><span data-feather='edit'></span></a> | ";
-                        echo "<a href=function/user/delete.php?id_user=" . $user['id_user'] . " class='badge bg-danger text-decoration-none'><span data-feather='trash-2'></span></a>";
+                        echo "<a href=function/user/delete.php?id_user=" . $user['id_user'] . " class='badge bg-danger text-decoration-none' onclick='confirmDelete(event)'><span data-feather='trash-2' ></span></a>";
                         echo "</td>";
 
                         echo "</tr>";
@@ -186,3 +186,23 @@ include 'koneksi.php';
     </div>
 
 </section>
+
+<script>
+    function confirmDelete(e) {
+        e.preventDefault();
+        const href = e.target.getAttribute('href');
+        Swal.fire({
+            title: 'Are you sure?',
+            text: "You won't be able to revert this!",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Yes, delete it!'
+        }).then((result) => {
+            if (result.value) {
+                window.location.href = href;
+            }
+        })
+    }
+</script>
