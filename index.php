@@ -1,7 +1,7 @@
 <?php
 error_reporting(0);
 session_start();
-if ($_SESSION['status'] == "login"){
+if ($_SESSION['status'] == "login") {
 	header("location:admin.php");
 }
 ?>
@@ -49,11 +49,11 @@ if ($_SESSION['status'] == "login"){
 					<?php
 					if (isset($_GET['pesan'])) {
 						if ($_GET['pesan'] == "gagal") {
-							echo "Login gagal! username dan password salah!";
+							echo "<div class='alert alert-danger'>Username atau Password salah!</div>";
 						} else if ($_GET['pesan'] == "logout") {
-							echo "Anda telah berhasil logout";
+							echo "<div class='alert alert-danger'>Anda sudah Logout!</div>";
 						} else if ($_GET['pesan'] == "belum_login") {
-							echo "Anda harus login untuk mengakses halaman admin";
+							echo "<div class='alert alert-danger'>Anda harus login untuk mengakses halaman admin!</div>";
 						}
 					}
 					?>
@@ -119,6 +119,7 @@ if ($_SESSION['status'] == "login"){
 	</script>
 	<!--===============================================================================================-->
 	<script src="authstyle/js/main.js"></script>
+
 
 </body>
 

@@ -2,6 +2,9 @@
 session_start();
 
 if (!isset($_SESSION['username'])) {
+
+
+
     header("Location: index.php");
 }
 
@@ -18,7 +21,15 @@ if (!isset($_SESSION['username'])) {
     <link rel="stylesheet" href="assets/css/main/app-dark.css">
     <link rel="shortcut icon" href="assets/images/logo/favicon.svg" type="image/x-icon">
     <link rel="shortcut icon" href="assets/images/logo/favicon.png" type="image/png">
-    
+
+    <!-- sweet alert -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@10.3.5/dist/sweetalert2.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10.3.5/dist/sweetalert2.min.js"></script>
+
+    <!-- toastify -->
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
+
+
 
 </head>
 
@@ -93,9 +104,28 @@ if (!isset($_SESSION['username'])) {
                         <li class="sidebar-title">User </li>
 
                         <li class="sidebar-item  ">
-                            <a href="logout.php" class='sidebar-link text-danger'>
+                            <a href="logout.php" class='sidebar-link text-danger' id="logout">
                                 <i class="bi bi-box-arrow-left text-danger"></i>
                                 <span>logout</span>
+                                <script>
+                                    document.getElementById("logout").addEventListener("click", function(event) {
+                                        event.preventDefault(); //mencegah link dijalankan
+                                        Swal.fire({
+                                            title: 'Apakah Anda yakin ingin logout?',
+                                            icon: 'warning',
+                                            showCancelButton: true,
+                                            confirmButtonColor: '#3085d6',
+                                            cancelButtonColor: '#d33',
+                                            confirmButtonText: 'Ya, Logout!',
+                                            cancelButtonText: 'Tidak, batalkan!'
+                                        }).then((result) => {
+                                            if (result.value) {
+                                                // Apabila tombol 'Ya' diklik, redirect ke halaman logout
+                                                window.location.href = "logout.php";
+                                            }
+                                        });
+                                    });
+                                </script>
                             </a>
                         </li>
 
@@ -166,6 +196,9 @@ if (!isset($_SESSION['username'])) {
     </div>
     <script src="assets/js/bootstrap.js"></script>
     <script src="assets/js/app.js"></script>
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
+
 
 </body>
 

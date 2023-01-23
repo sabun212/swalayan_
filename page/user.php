@@ -1,404 +1,188 @@
+<?php
+include 'koneksi.php';
+?>
 <section class="section">
     <div class="card">
         <div class="card-header">
-            <h4 class="card-title"></h4>
-        </div>
-        <div class="card-body">
-            <div class="col-md-6 col-12">
-                <div class="card">
-                    <div class="card-header">
-                        <h4 class="card-title"></h4>
-                    </div>
-                    <div class="card-content">
-                        <div class="card-body">
-                            <form class="form form-horizontal" action="auth/simpan_registrasi.php" method="post">
-                                <div class="form-body">
-                                    <div class="row">
-                                        <div class="col-md-4">
-                                            <label>ID User</label>
-                                        </div>
-                                        <?php
-                                        include 'koneksi.php';
-                                        $querykode = mysqli_query($koneksi, "SELECT max(id_user) as idterbesar FROM user");
-                                        $data = mysqli_fetch_array($querykode);
-                                        $id_user = $data['idterbesar'];
+            <!-- Button trigger for login form modal -->
+            <button type="button" class="btn btn-outline-success" data-bs-toggle="modal" data-bs-target="#inlineForm">
+                Launch Modal
+            </button>
 
-                                        $urutan = (int) substr($id_user, 3, 3);
-                                        $urutan++;
+            <!--login form Modal -->
+            <div class="modal fade text-left" id="inlineForm" tabindex="-1" role="dialog" aria-labelledby="myModalLabel33" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h4 class="modal-title" id="myModalLabel33">Login Form </h4>
+                            <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+                                <i data-feather="x"></i>
+                            </button>
+                        </div>
+                        <form action="function/daftaruser.php" method="post">
+                            <div class="modal-body">
+                                <div class="row">
+                                    <div class="col-md-4">
+                                        <label>ID User</label>
+                                    </div>
+                                    <?php
+                                    // include 'koneksi.php';
 
-                                        $huruf = "USR";
-                                        $iduser = $huruf . sprintf("%03s", $urutan);
+                                    $querykode = mysqli_query($koneksi, "SELECT max(id_user) as idterbesar FROM user");
+                                    $data = mysqli_fetch_array($querykode);
+                                    $id_user = $data['idterbesar'];
 
-                                        ?>
+                                    $urutan = (int) substr($id_user, 3, 3);
+                                    $urutan++;
 
+                                    $huruf = "USR";
+                                    $iduser = $huruf . sprintf("%03s", $urutan);
 
+                                    ?>
 
-                                        <div class="col-md-8">
-                                            <div class="form-group has-icon-left">
-                                                <div class="position-relative">
-                                                    <input type="text" class="form-control" placeholder="id_user" id="first-name-icon" name="id_user" value="<?php echo $iduser ?>" readonly>
-                                                    <div class="form-control-icon">
-                                                        <i class="bi bi-person-badge-fill"></i>
-                                                    </div>
+                                    <div class="col-md-8">
+                                        <div class="form-group has-icon-left">
+                                            <div class="position-relative">
+                                                <input type="text" class="form-control" placeholder="id_user" id="first-name-icon" name="id_user" value="<?php echo $iduser ?>" readonly>
+                                                <div class="form-control-icon">
+                                                    <i class="bi bi-person-badge-fill"></i>
                                                 </div>
                                             </div>
-                                        </div>
-
-
-                                        <div class="col-md-4">
-                                            <label>Username</label>
-                                        </div>
-                                        <div class="col-md-8">
-                                            <div class="form-group has-icon-left">
-                                                <div class="position-relative">
-                                                    <input type="text" class="form-control" placeholder="username" id="first-name-icon" name="username">
-                                                    <div class="form-control-icon">
-                                                        <i class="bi bi-file-person"></i>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-4">
-                                            <label>Name</label>
-                                        </div>
-                                        <div class="col-md-8">
-                                            <div class="form-group has-icon-left">
-                                                <div class="position-relative">
-                                                    <input type="text" class="form-control" placeholder="Name" id="first-name-icon" name="nama_user">
-                                                    <div class="form-control-icon">
-                                                        <i class="bi bi-person"></i>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-4">
-                                            <label>Jenis Kelamin</label>
-                                        </div>
-                                        <div class="col-md-8">
-                                            <div class="form-group has-icon-left">
-                                                <div class="position-relative">
-                                                    <select class="form-control select2 input100" name="jenis_kelamin">
-                                                        <option value="">Jenis Kelamin </option>
-                                                        <option value="Laki-laki">Laki - Laki </option>
-                                                        <option value="Perempuan">Perempuan</option>
-                                                    </select>
-                                                    <div class="form-control-icon">
-                                                        <i class="bi bi-gender-ambiguous"></i>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-4">
-                                            <label>Password</label>
-                                        </div>
-                                        <div class="col-md-8">
-                                            <div class="form-group has-icon-left">
-                                                <div class="position-relative">
-                                                    <input type="password" class="form-control" placeholder="Password" name="password">
-                                                    <div class="form-control-icon">
-                                                        <i class="bi bi-lock"></i>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-4">
-                                            <label>No HP</label>
-                                        </div>
-                                        <div class="col-md-8">
-                                            <div class="form-group has-icon-left">
-                                                <div class="position-relative">
-                                                    <input type="number" class="form-control" placeholder="NO HP" name="no_hp">
-                                                    <div class="form-control-icon">
-                                                        <i class="bi bi-phone"></i>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="form-group col-md-8 offset-md-4">
-                                            <div class="form-check">
-                                                <div class="checkbox">
-                                                    <input type="checkbox" id="checkbox2" class="form-check-input" checked="">
-                                                    <label for="checkbox2">Remember Me</label>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-12 d-flex justify-content-end">
-                                            <button type="submit" class="btn btn-primary me-1 mb-1">Submit</button>
-                                            <button type="reset" class="btn btn-light-secondary me-1 mb-1">Reset</button>
                                         </div>
                                     </div>
-                            </form>
-                        </div>
+
+
+                                    <div class="col-md-4">
+                                        <label>Username</label>
+                                    </div>
+                                    <div class="col-md-8">
+                                        <div class="form-group has-icon-left">
+                                            <div class="position-relative">
+                                                <input type="text" class="form-control" placeholder="username" id="first-name-icon" name="username" required>
+                                                <div class="form-control-icon">
+                                                    <i class="bi bi-file-person"></i>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <label>Name</label>
+                                    </div>
+                                    <div class="col-md-8">
+                                        <div class="form-group has-icon-left">
+                                            <div class="position-relative">
+                                                <input type="text" class="form-control" placeholder="Name" id="first-name-icon" name="nama_user" required>
+                                                <div class="form-control-icon">
+                                                    <i class="bi bi-person"></i>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <label>Jenis Kelamin</label>
+                                    </div>
+                                    <div class="col-md-8">
+                                        <div class="form-group has-icon-left">
+                                            <div class="position-relative">
+                                                <select class="form-control select2 input100" name="jenis_kelamin" required>
+                                                    <option value="">Jenis Kelamin </option>
+                                                    <option value="Laki-laki">Laki - Laki </option>
+                                                    <option value="Perempuan">Perempuan</option>
+                                                </select>
+                                                <div class="form-control-icon">
+                                                    <i class="bi bi-gender-ambiguous"></i>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <label>Password</label>
+                                    </div>
+                                    <div class="col-md-8">
+                                        <div class="form-group has-icon-left">
+                                            <div class="position-relative">
+                                                <input type="password" class="form-control" placeholder="Password" name="password" required>
+                                                <div class="form-control-icon">
+                                                    <i class="bi bi-lock"></i>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <label>No HP</label>
+                                    </div>
+                                    <div class="col-md-8">
+                                        <div class="form-group has-icon-left">
+                                            <div class="position-relative">
+                                                <input type="number" class="form-control" placeholder="NO HP" name="no_hp" required>
+                                                <div class="form-control-icon">
+                                                    <i class="bi bi-phone"></i>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group col-md-8 offset-md-4">
+                                    </div>
+                                    <div class="col-12 d-flex justify-content-end">
+                                        <button id="insert-button" class="btn btn-primary me-1 mb-1" type="submit">Submit</button>
+                                        <button type="reset" class="btn btn-light-secondary me-1 mb-1">Reset</button>
+                                    </div>
+                                </div>
+                            </div>
                         </form>
                     </div>
                 </div>
             </div>
-        </div>
-    </div>
-    </div>
-</section>
 
-<section class="section">
-    <div class="card">
-        <div class="card-header">
-            Simple Datatable
+
         </div>
         <div class="card-body">
-            <table class="table table-striped" id="table1">
+            <table class="table table-striped">
                 <thead>
                     <tr>
-                        <th>Name</th>
-                        <th>Email</th>
-                        <th>Phone</th>
-                        <th>City</th>
-                        <th>Status</th>
+                        <th scope="col">#</th>
+                        <th scope="col">ID User</th>
+                        <th scope="col">Nama User</th>
+                        <th scope="col">Username</th>
+                        <th scope="col">Jenis Kelamin</th>
+                        <th scope="col">Password</th>
+                        <th scope="col">NO. HP</th>
+                        <th scope="col">Action</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <td>Graiden</td>
-                        <td>vehicula.aliquet@semconsequat.co.uk</td>
-                        <td>076 4820 8838</td>
-                        <td>Offenburg</td>
-                        <td>
-                            <span class="badge bg-success">Active</span>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>Dale</td>
-                        <td>fringilla.euismod.enim@quam.ca</td>
-                        <td>0500 527693</td>
-                        <td>New Quay</td>
-                        <td>
-                            <span class="badge bg-success">Active</span>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>Nathaniel</td>
-                        <td>mi.Duis@diam.edu</td>
-                        <td>(012165) 76278</td>
-                        <td>Grumo Appula</td>
-                        <td>
-                            <span class="badge bg-danger">Inactive</span>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>Darius</td>
-                        <td>velit@nec.com</td>
-                        <td>0309 690 7871</td>
-                        <td>Ways</td>
-                        <td>
-                            <span class="badge bg-success">Active</span>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>Oleg</td>
-                        <td>rhoncus.id@Aliquamauctorvelit.net</td>
-                        <td>0500 441046</td>
-                        <td>Rossignol</td>
-                        <td>
-                            <span class="badge bg-success">Active</span>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>Kermit</td>
-                        <td>diam.Sed.diam@anteVivamusnon.org</td>
-                        <td>(01653) 27844</td>
-                        <td>Patna</td>
-                        <td>
-                            <span class="badge bg-success">Active</span>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>Jermaine</td>
-                        <td>sodales@nuncsit.org</td>
-                        <td>0800 528324</td>
-                        <td>Mold</td>
-                        <td>
-                            <span class="badge bg-success">Active</span>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>Ferdinand</td>
-                        <td>gravida.molestie@tinciduntadipiscing.org</td>
-                        <td>(016977) 4107</td>
-                        <td>Marlborough</td>
-                        <td>
-                            <span class="badge bg-danger">Inactive</span>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>Kuame</td>
-                        <td>Quisque.purus@mauris.org</td>
-                        <td>(0151) 561 8896</td>
-                        <td>Tresigallo</td>
-                        <td>
-                            <span class="badge bg-success">Active</span>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>Deacon</td>
-                        <td>Duis.a.mi@sociisnatoquepenatibus.com</td>
-                        <td>07740 599321</td>
-                        <td>Karapınar</td>
-                        <td>
-                            <span class="badge bg-success">Active</span>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>Channing</td>
-                        <td>tempor.bibendum.Donec@ornarelectusante.ca</td>
-                        <td>0845 46 49</td>
-                        <td>Warrnambool</td>
-                        <td>
-                            <span class="badge bg-success">Active</span>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>Aladdin</td>
-                        <td>sem.ut@pellentesqueafacilisis.ca</td>
-                        <td>0800 1111</td>
-                        <td>Bothey</td>
-                        <td>
-                            <span class="badge bg-success">Active</span>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>Cruz</td>
-                        <td>non@quisturpisvitae.ca</td>
-                        <td>07624 944915</td>
-                        <td>Shikarpur</td>
-                        <td>
-                            <span class="badge bg-success">Active</span>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>Keegan</td>
-                        <td>molestie.dapibus@condimentumDonecat.edu</td>
-                        <td>0800 200103</td>
-                        <td>Assen</td>
-                        <td>
-                            <span class="badge bg-success">Active</span>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>Ray</td>
-                        <td>placerat.eget@sagittislobortis.edu</td>
-                        <td>(0112) 896 6829</td>
-                        <td>Hofors</td>
-                        <td>
-                            <span class="badge bg-success">Active</span>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>Maxwell</td>
-                        <td>diam@dapibus.org</td>
-                        <td>0334 836 4028</td>
-                        <td>Thane</td>
-                        <td>
-                            <span class="badge bg-success">Active</span>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>Carter</td>
-                        <td>urna.justo.faucibus@orci.com</td>
-                        <td>07079 826350</td>
-                        <td>Biez</td>
-                        <td>
-                            <span class="badge bg-success">Active</span>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>Stone</td>
-                        <td>velit.Aliquam.nisl@sitametrisus.com</td>
-                        <td>0800 1111</td>
-                        <td>Olivar</td>
-                        <td>
-                            <span class="badge bg-success">Active</span>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>Berk</td>
-                        <td>fringilla.porttitor.vulputate@taciti.edu</td>
-                        <td>(0101) 043 2822</td>
-                        <td>Sanquhar</td>
-                        <td>
-                            <span class="badge bg-success">Active</span>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>Philip</td>
-                        <td>turpis@euenimEtiam.org</td>
-                        <td>0500 571108</td>
-                        <td>Okara</td>
-                        <td>
-                            <span class="badge bg-success">Active</span>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>Kibo</td>
-                        <td>feugiat@urnajustofaucibus.co.uk</td>
-                        <td>07624 682306</td>
-                        <td>La Cisterna</td>
-                        <td>
-                            <span class="badge bg-success">Active</span>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>Bruno</td>
-                        <td>elit.Etiam.laoreet@luctuslobortisClass.edu</td>
-                        <td>07624 869434</td>
-                        <td>Rocca d"Arce</td>
-                        <td>
-                            <span class="badge bg-success">Active</span>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>Leonard</td>
-                        <td>blandit.enim.consequat@mollislectuspede.net</td>
-                        <td>0800 1111</td>
-                        <td>Lobbes</td>
-                        <td>
-                            <span class="badge bg-success">Active</span>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>Hamilton</td>
-                        <td>mauris@diam.org</td>
-                        <td>0800 256 8788</td>
-                        <td>Sanzeno</td>
-                        <td>
-                            <span class="badge bg-success">Active</span>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>Harding</td>
-                        <td>Lorem.ipsum.dolor@etnetuset.com</td>
-                        <td>0800 1111</td>
-                        <td>Obaix</td>
-                        <td>
-                            <span class="badge bg-success">Active</span>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>Emmanuel</td>
-                        <td>eget.lacus.Mauris@feugiatSednec.org</td>
-                        <td>(016977) 8208</td>
-                        <td>Saint-Remy-Geest</td>
-                        <td>
-                            <span class="badge bg-success">Active</span>
-                        </td>
-                    </tr>
-                </tbody>
+                    <?php
+                    $sql = "SELECT * FROM `user` ORDER BY `user`.`id_user` DESC";
+                    $query = mysqli_query($koneksi, $sql);
+
+                    $no = 0; //variabel no
+
+
+                    while ($user = mysqli_fetch_array($query)) {
+
+                        $no++;
+
+                        echo "<tr>";
+                        echo "<th scope='row'>$no</th>";
+
+                        echo "<td>" . $user['id_user'] . "</td>";
+                        echo "<td>" . $user['nama_user'] . "</td>";
+                        echo "<td>" . $user['username'] . "</td>";
+                        echo "<td>" . $user['jenis_kelamin'] . "</td>";
+                        echo "<td>" . $user['password'] . "</td>";
+                        echo "<td>" . $user['no_hp'] . "</td>";
+
+                        echo "<td>";
+                        echo " <a href='' class='badge bg-warning text-decoration-none'><span data-feather='edit'></span></a> | ";
+                        echo "<a href=function/user/delete.php?id_user=" . $user['id_user'] . " class='badge bg-danger text-decoration-none'><span data-feather='trash-2'></span></a>";
+                        echo "</td>";
+
+                        echo "</tr>";
+                    }
+                    ?>
             </table>
+
         </div>
     </div>
 
 </section>
-</div>
-
-<script src="assets/js/bootstrap.js"></script>
-<script src="assets/js/app.js"></script>
-
-<script src="assets/extensions/simple-datatables/umd/simple-datatables.js"></script>
-<script src="assets/js/pages/simple-datatables.js"></script>
