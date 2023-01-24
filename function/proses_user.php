@@ -26,6 +26,7 @@ switch ($aksi) {
     username = '$username', password = '$password', no_hp = '$no_hp' WHERE id_user = '$id_user'");
         header("location:../admin.php?page=user");
         break;
+
     case 'delete':
         $id_user = $_GET['id_user'];
         $query = mysqli_query($koneksi, "DELETE FROM user WHERE id_user = '$id_user'");
