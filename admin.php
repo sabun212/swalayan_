@@ -185,7 +185,7 @@ if (!isset($_SESSION['username'])) {
             <footer>
                 <div class="footer clearfix mb-0 text-muted">
                     <div class="float-start">
-                        <p>2021 &copy; Mazer</p>
+                        <p>2023 &copy; lup lup</p>
                     </div>
                     <div class="float-end">
                         <p>Crafted with <span class="text-danger "><i class="bi bi-heart"></i></span> lup lup
@@ -198,6 +198,8 @@ if (!isset($_SESSION['username'])) {
     <script src="assets/js/app.js"></script>
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
+    <script src="assets/extensions/simple-datatables/umd/simple-datatables.js"></script>
+    <script src="assets/js/pages/simple-datatables.js"></script>
 
 
 </body>
