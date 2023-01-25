@@ -183,9 +183,8 @@ include 'koneksi.php';
 
                                 <a href='' class='badge bg-warning text-decoration-none' data-bs-toggle="modal" data-bs-target="#edit<?php echo $d['id_user'] ?>"><span data-feather='edit'></span></a> |
 
-                                <a href="function/proses_user.php?aksi=delete&id_user=<?php echo $d['id_user'] ?>" class='badge bg-danger text-decoration-none'>
+                                <a onclick="swalDelete('function/proses_user.php?aksi=delete&id_user=<?php echo $d['id_user'] ?>')" class='badge bg-danger text-decoration-none'>
                                     <span data-feather='trash-2'></span>
-
                                 </a>
 
                             </td>

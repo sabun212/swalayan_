@@ -137,7 +137,6 @@ include 'koneksi.php';
                             <td class="text-center">
 
                                 <a href='' class='badge bg-warning text-decoration-none' data-bs-toggle="modal" data-bs-target="#edit<?php echo $d['id_barang'] ?>"><span data-feather='edit'></span></a> |
-
                                 <a href="function/proses_barang.php?aksi=delete&id_barang=<?php echo $d['id_barang'] ?>" class='badge bg-danger text-decoration-none'>
                                     <span data-feather='trash-2'></span>
 
@@ -148,6 +147,103 @@ include 'koneksi.php';
                         </tr>
                     <?php } ?>
             </table>
+
+            <?php
+            include 'koneksi.php';
+            $no = 1;
+            $data = mysqli_query($koneksi, "select * from barang");
+            while ($d = mysqli_fetch_array($data)) {
+            ?>
+                <div class="modal-primary me-1 mb-1 d-inline-block">
+
+                    <!--primary theme Modal -->
+                    <div class="modal fade text-left" id="edit<?php echo $d['id_barang'] ?>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel33" aria-hidden="true" aria-hidden="true">
+                        <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title white" id="myModalLabel133">
+                                        Edit User
+                                    </h5>
+                                    <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+                                        <i data-feather="x"></i>
+                                    </button>
+                                </div>
+                                <div class="modal-body">
+                                    <form action="function/proses_barang.php?aksi=update" method="post">
+                                        <div class="form-group position-relative has-icon-left mb-4">
+                                            <div class="col-md-4">
+                                                <label>ID Barang</label>
+                                            </div>
+                                            <div class="col-md-12">
+                                                <div class="form-group has-icon-left">
+                                                    <div class="position-relative">
+                                                        <input type="text" class="form-control" placeholder="ID Barang" id="first-name-icon" name="id_barang" value="<?php echo $d['id_barang'] ?>" readonly>
+                                                        <div class="form-control-icon">
+                                                            <i class="bi bi-file-person"></i>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="col-md-4">
+                                                <label>Nama Barang</label>
+                                            </div>
+                                            <div class="col-md-12">
+                                                <div class="form-group has-icon-left">
+                                                    <div class="position-relative">
+                                                        <input type="text" class="form-control" placeholder="nama_barang" id="first-name-icon" name="nama_barang" value="<?php echo $d['nama_barang'] ?>" required>
+                                                        <div class="form-control-icon">
+                                                            <i class="bi bi-file-person"></i>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="col-md-4">
+                                                <label>Harga</label>
+                                            </div>
+                                            <div class="col-md-12">
+                                                <div class="form-group has-icon-left">
+                                                    <div class="position-relative">
+                                                        <input type="number" class="form-control" placeholder="Harga" id="first-name-icon" name="harga" value="<?php echo $d['harga'] ?>" required>
+                                                        <div class="form-control-icon">
+                                                            <span data-feather='user'></span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+
+                                        <div class="col-md-4">
+                                            <label>Stok</label>
+                                        </div>
+                                        <div class="col-md-12">
+                                            <div class="form-group has-icon-left">
+                                                <div class="position-relative">
+                                                    <input type="number" class="form-control" placeholder="Stok" name="stok" value="<?php echo $d['stok'] ?>" required>
+                                                    <div class="form-control-icon">
+                                                        <i class="bi bi-lock"></i>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+
+                                        <div class="form-group col-md-8 offset-md-4">
+                                        </div>
+                                        <div class="col-12 d-flex justify-content-end">
+                                            <button id="insert-button" class="btn btn-primary me-1 mb-1" type="submit">Submit</button>
+                                            <button type="reset" class="btn btn-light-secondary me-1 mb-1">Reset</button>
+                                        </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                    </form>
+                </div>
+            <?php } ?>
 
 
         </div>

@@ -74,7 +74,7 @@ if (!isset($_SESSION['username'])) {
                         <li class="sidebar-title">Menu</li>
 
                         <li class="sidebar-item ">
-                            <a href="index.html" class='sidebar-link'>
+                            <a href="dashboard.php" class='sidebar-link'>
                                 <i class="bi bi-grid-fill "></i>
                                 <span>Dashboard</span>
                             </a>
@@ -160,8 +160,7 @@ if (!isset($_SESSION['username'])) {
                         <div class="col-12 col-md-6 order-md-2 order-first">
                             <nav aria-label="breadcrumb" class="breadcrumb-header float-start float-lg-end">
                                 <ol class="breadcrumb">
-                                    <li class="breadcrumb-item"><a href="index.html">Dashboard</a></li>
-                                    <li class="breadcrumb-item active" aria-current="page">Layout Default</li>
+                                    <li class="breadcrumb-item"><a href="admin.php">Dashboard</a></li>
                                 </ol>
                             </nav>
                         </div>
@@ -210,6 +209,26 @@ if (!isset($_SESSION['username'])) {
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
     <script src="assets/extensions/simple-datatables/umd/simple-datatables.js"></script>
     <script src="assets/js/pages/simple-datatables.js"></script>
+
+    <script>
+        function swalDelete(link) {
+            Swal.fire({
+                title: "Hapus",
+                text: "Apakah Kamu Yakin Ingin Menghapus Data Ini?",
+                icon: "warning",
+                showConfirmButton: true,
+                confirmButtonText: "Hapus",
+                confirmButtonColor: '#42ba96',
+                showCancelButton: true,
+                cancelButtonText: "Batal",
+                cancelButtonColor: '#DC3545',
+            }).then((response) => {
+                if (response.value) {
+                    window.location.href = link
+                }
+            })
+        }
+    </script>
 
 
 
