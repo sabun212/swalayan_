@@ -92,7 +92,7 @@ include 'koneksi.php';
                                             <div class="position-relative">
                                                 <select class="form-control select2 input100" name="jenis_kelamin" required>
                                                     <option value="">Jenis Kelamin </option>
-                                                    <option value="Laki-laki">Laki - Laki </option>
+                                                    <option value="Laki-Laki">Laki - Laki </option>
                                                     <option value="Perempuan">Perempuan</option>
                                                 </select>
                                                 <div class="form-control-icon">
@@ -269,10 +269,10 @@ include 'koneksi.php';
                                                 <div class="position-relative">
                                                     <select class="form-control select2 input100" name="jenis_kelamin" required>
                                                         <?php
-                                                        if ($d['jenis_kelamin'] == 'laki-Laki') {
+                                                        if ($d['jenis_kelamin'] == 'Laki-Laki') {
                                                             echo "<option value='Laki-Laki' selected>Laki-Laki</option>";
                                                             echo "<option value='Perempuan'>Perempuan</option>";
-                                                        } else {
+                                                        } else if ($d['jenis_kelamin'] == 'Perempuan') {
                                                             echo "<option value='Laki-Laki'>Laki-Laki</option>";
                                                             echo "<option value='Perempuan' selected>Perempuan</option>";
                                                         }

@@ -23,6 +23,7 @@ if (!isset($_SESSION['username'])) {
     <link rel="shortcut icon" href="assets/images/logo/favicon.png" type="image/png">
     <link rel="stylesheet" href="assets/extensions/simple-datatables/style.css">
     <link rel="stylesheet" href="assets/css/pages/simple-datatables.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css">
 
     <!-- sweet alert -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@10.3.5/dist/sweetalert2.min.css">
@@ -153,7 +154,7 @@ if (!isset($_SESSION['username'])) {
                 <div class="page-title">
                     <div class="row">
                         <div class="col-12 col-md-6 order-md-1 order-last">
-                            <h3>Admin Page</h3>
+                            <h3>Halaman Admin</h3>
                             <p class="text-subtitle text-muted"></p>
                         </div>
                         <div class="col-12 col-md-6 order-md-2 order-first">
