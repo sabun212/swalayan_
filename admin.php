@@ -21,6 +21,9 @@ if (!isset($_SESSION['username'])) {
     <link rel="stylesheet" href="assets/css/main/app-dark.css">
     <link rel="shortcut icon" href="assets/images/logo/favicon.svg" type="image/x-icon">
     <link rel="shortcut icon" href="assets/images/logo/favicon.png" type="image/png">
+    <link rel="stylesheet" href="assets/extensions/simple-datatables/style.css">
+    <link rel="stylesheet" href="assets/css/pages/simple-datatables.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css">
 
     <!-- sweet alert -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@10.3.5/dist/sweetalert2.min.css">
@@ -70,20 +73,24 @@ if (!isset($_SESSION['username'])) {
                     <ul class="menu">
                         <li class="sidebar-title">Menu</li>
 
-                        <li class="sidebar-item active ">
-                            <a href="index.html" class='sidebar-link'>
+                        <li class="sidebar-item ">
+                            <a href="dashboard.php" class='sidebar-link'>
                                 <i class="bi bi-grid-fill "></i>
                                 <span>Dashboard</span>
                             </a>
                         </li>
-                        <li class="sidebar-item  ">
+                        <li class="sidebar-item 
+                                    <?php
+                                    if (strpos($_SERVER['REQUEST_URI'], 'admin.php?page=user') !== false)
+                                        echo "active";
+                                    ?>">
                             <a href="admin.php?page=user" class='sidebar-link'>
                                 <i class="bi bi-person"></i>
                                 <span>User</span>
                             </a>
                         </li>
                         <li class="sidebar-item  ">
-                            <a href="index.html" class='sidebar-link'>
+                            <a href="#" class='sidebar-link'>
                                 <i class="bi bi-bag-fill"></i>
                                 <span>Transaksi</span>
                             </a>
@@ -94,8 +101,11 @@ if (!isset($_SESSION['username'])) {
                                 <span>Pelanggan</span>
                             </a>
                         </li>
-                        <li class="sidebar-item">
-                            <a href="index.html" class='sidebar-link'>
+                        <li class="sidebar-item <?php
+                                                if (strpos($_SERVER['REQUEST_URI'], 'admin.php?page=barang') !== false)
+                                                    echo "active";
+                                                ?>">
+                            <a href=" admin.php?page=barang" class='sidebar-link'>
                                 <i class="bi bi-list"></i>
                                 <span>Barang</span>
                             </a>
@@ -144,14 +154,13 @@ if (!isset($_SESSION['username'])) {
                 <div class="page-title">
                     <div class="row">
                         <div class="col-12 col-md-6 order-md-1 order-last">
-                            <h3>Admin Page</h3>
+                            <h3>Halaman Admin</h3>
                             <p class="text-subtitle text-muted"></p>
                         </div>
                         <div class="col-12 col-md-6 order-md-2 order-first">
                             <nav aria-label="breadcrumb" class="breadcrumb-header float-start float-lg-end">
                                 <ol class="breadcrumb">
-                                    <li class="breadcrumb-item"><a href="index.html">Dashboard</a></li>
-                                    <li class="breadcrumb-item active" aria-current="page">Layout Default</li>
+                                    <li class="breadcrumb-item"><a href="admin.php">Dashboard</a></li>
                                 </ol>
                             </nav>
                         </div>
@@ -200,6 +209,29 @@ if (!isset($_SESSION['username'])) {
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
     <script src="assets/extensions/simple-datatables/umd/simple-datatables.js"></script>
     <script src="assets/js/pages/simple-datatables.js"></script>
+
+    <script>
+        function swalDelete(link) {
+            Swal.fire({
+                title: "Hapus",
+                text: "Apakah Kamu Yakin Ingin Menghapus Data Ini?",
+                icon: "warning",
+                showConfirmButton: true,
+                confirmButtonText: "Hapus",
+                confirmButtonColor: '#42ba96',
+                showCancelButton: true,
+                cancelButtonText: "Batal",
+                cancelButtonColor: '#DC3545',
+            }).then((response) => {
+                if (response.value) {
+                    window.location.href = link
+                }
+            })
+        }
+    </script>
+
+
+
 
 
 </body>
