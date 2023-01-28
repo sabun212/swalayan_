@@ -21,14 +21,18 @@ switch ($aksi) {
         break;
 
     case 'update':
+        $rand = rand();
+        $rand = rand();
         $id_barang = $_POST['id_barang'];
         $nama_barang = $_POST['nama_barang'];
         $harga = $_POST['harga'];
         $stok = $_POST['stok'];
-        $filename = $_FILES['gambar']['name'];
+        $filename = $_FILES['gambar'];
+
+
         $newfilename = $rand . '_' . $filename;
         move_uploaded_file($_FILES['gambar']['tmp_name'], '../gambar/' . $rand . '_' . $filename);
-        $query = mysqli_query($koneksi, "UPDATE barang SET nama_barang = '$nama_barang', harga = '$harga', stok = '$stok' WHERE id_barang = '$id_barang'");
+        $query = mysqli_query($koneksi, "UPDATE barang SET nama_barang = '$nama_barang', harga = '$harga', stok = '$stok' , gambar = '$newfilename' WHERE id_barang = '$id_barang'");
         header("location:../admin.php?page=barang");
         break;
 

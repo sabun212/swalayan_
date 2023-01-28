@@ -229,6 +229,20 @@ include 'koneksi.php';
                                             </div>
                                         </div>
 
+                                        <div class="col-md-4">
+                                            <label>Gambar</label>
+                                        </div>
+                                        <div class="col-md-12">
+                                            <div class="form-group has-icon-left">
+                                                <div class="position-relative">
+                                                    <input type="file" class="form-control" placeholder="Gambar" name="Gambar" value="<?php echo $d['gambar'] ?>" required>
+                                                    <div class="form-control-icon">
+                                                        <i class="bi bi-lock"></i>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
 
                                         <div class="form-group col-md-8 offset-md-4">
                                         </div>
