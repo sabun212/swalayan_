@@ -137,7 +137,7 @@ include 'koneksi.php';
                             <td class="text-center">
 
                                 <a href='' class='badge bg-warning text-decoration-none' data-bs-toggle="modal" data-bs-target="#edit<?php echo $d['id_barang'] ?>"><span data-feather='edit'></span></a> |
-                                <a href="function/proses_barang.php?aksi=delete&id_barang=<?php echo $d['id_barang'] ?>" class='badge bg-danger text-decoration-none'>
+                                <a onclick="swalDelete('function/proses_barang.php?aksi=delete&id_barang=<?php echo $d['id_barang'] ?>')" class='badge bg-danger text-decoration-none'>
                                     <span data-feather='trash-2'></span>
 
                                 </a>
@@ -222,6 +222,20 @@ include 'koneksi.php';
                                             <div class="form-group has-icon-left">
                                                 <div class="position-relative">
                                                     <input type="number" class="form-control" placeholder="Stok" name="stok" value="<?php echo $d['stok'] ?>" required>
+                                                    <div class="form-control-icon">
+                                                        <i class="bi bi-lock"></i>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-md-4">
+                                            <label>Gambar</label>
+                                        </div>
+                                        <div class="col-md-12">
+                                            <div class="form-group has-icon-left">
+                                                <div class="position-relative">
+                                                    <input type="file" class="form-control" placeholder="Gambar" name="Gambar" value="<?php echo $d['gambar'] ?>" required>
                                                     <div class="form-control-icon">
                                                         <i class="bi bi-lock"></i>
                                                     </div>
