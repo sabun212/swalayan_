@@ -21,9 +21,11 @@ switch ($aksi) {
         break;
 
     case 'update':
-        $rand = rand();
+
         $rand = rand();
         $id_barang = $_POST['id_barang'];
+        $query_select = mysqli_query($koneksi, "SELECT gambar FROM barang WHERE id_barang = '$id_barang'");
+        $data = mysqli_fetch_array($query_select);
         $nama_barang = $_POST['nama_barang'];
         $harga = $_POST['harga'];
         $stok = $_POST['stok'];

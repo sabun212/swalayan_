@@ -25,6 +25,25 @@ include 'koneksi.php';
                                 <i data-feather="x"></i>
                             </button>
                         </div>
+                        <?php
+                        if (isset($_POST['submit'])) {
+                            //save data
+                            //show Toastify
+                            echo '
+    <script src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
+    <script>
+    Toastify({
+        text: "Data berhasil disimpan!",
+        duration: 3000,
+        newWindow: true,
+        close: true,
+        gravity: "top", // `top` or `bottom`
+        position: "center", // `left`, `center` or `right`
+        backgroundColor: "linear-gradient(to right, #00b09b, #96c93d)",
+    }).showToast();
+    </script>';
+                        }
+                        ?>
                         <form action="function/proses_user.php?aksi=simpan" method="post">
                             <div class="modal-body">
                                 <div class="row">
@@ -335,25 +354,3 @@ include 'koneksi.php';
     </div>
 
 </section>
-
-
-
-<!-- <script>
-    function confirmDelete(e) {
-        e.preventDefault();
-        const href = e.target.getAttribute(' ');
-        Swal.fire({
-            title: 'Are you sure?',
-            text: "You won't be able to revert this!",
-            icon: 'warning',
-            showCancelButton: true,
-            confirmButtonColor: '#3085d6',
-            cancelButtonColor: '#d33',
-            confirmButtonText: 'Yes, delete it!'
-        }).then((result) => {
-            if (result.value) {
-                window.location.href = href;
-            }
-        })
-    }
-</script> -->

@@ -14,7 +14,5 @@ $queryinput = mysqli_query($koneksi, "INSERT INTO user
 VALUES('$id_user','$nama_user','$jenis_kelamin','$username','$password','$no_hp')");
 
 
-
-
 //redirect ke halaman index.php
 header("location:../admin.php?page=user");

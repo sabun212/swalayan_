@@ -23,11 +23,8 @@ if (!isset($_SESSION['username'])) {
     <link rel="shortcut icon" href="assets/images/logo/favicon.png" type="image/png">
     <link rel="stylesheet" href="assets/extensions/simple-datatables/style.css">
     <link rel="stylesheet" href="assets/css/pages/simple-datatables.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css">
 
-    <!-- sweet alert -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@10.3.5/dist/sweetalert2.min.css">
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10.3.5/dist/sweetalert2.min.js"></script>
+
 
     <!-- toastify -->
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
@@ -89,14 +86,20 @@ if (!isset($_SESSION['username'])) {
                                 <span>User</span>
                             </a>
                         </li>
-                        <li class="sidebar-item  ">
-                            <a href="#" class='sidebar-link'>
+                        <li class="sidebar-item <?php
+                                                if (strpos($_SERVER['REQUEST_URI'], 'admin.php?page=transaksi') !== false)
+                                                    echo "active";
+                                                ?>">
+                            <a href="admin.php?page=transaksi" class='sidebar-link'>
                                 <i class="bi bi-bag-fill"></i>
                                 <span>Transaksi</span>
                             </a>
                         </li>
-                        <li class="sidebar-item  ">
-                            <a href="index.html" class='sidebar-link'>
+                        <li class="sidebar-item <?php
+                                                if (strpos($_SERVER['REQUEST_URI'], 'admin.php?page=pelanggan') !== false)
+                                                    echo "active";
+                                                ?>">
+                            <a href="admin.php?page=pelanggan" class='sidebar-link'>
                                 <i class="bi bi-person-lines-fill"></i>
                                 <span>Pelanggan</span>
                             </a>
@@ -105,7 +108,7 @@ if (!isset($_SESSION['username'])) {
                                                 if (strpos($_SERVER['REQUEST_URI'], 'admin.php?page=barang') !== false)
                                                     echo "active";
                                                 ?>">
-                            <a href=" admin.php?page=barang" class='sidebar-link'>
+                            <a href="admin.php?page=barang" class='sidebar-link'>
                                 <i class="bi bi-list"></i>
                                 <span>Barang</span>
                             </a>
@@ -126,7 +129,7 @@ if (!isset($_SESSION['username'])) {
                                             showCancelButton: true,
                                             confirmButtonColor: '#3085d6',
                                             cancelButtonColor: '#d33',
-                                            confirmButtonText: 'Ya, Logout!',
+                                            confirmButtonText: 'Ya, Logout!  ',
                                             cancelButtonText: 'Tidak, batalkan!'
                                         }).then((result) => {
                                             if (result.value) {
@@ -190,17 +193,18 @@ if (!isset($_SESSION['username'])) {
             </div>
 
 
-
-            <footer>
-                <div class="footer clearfix mb-0 text-muted">
-                    <div class="float-start">
-                        <p>2023 &copy; lup lup</p>
+            <div>
+                <footer>
+                    <div class="footer clearfix mb-0 text-muted">
+                        <div class="float-start">
+                            <p>2023 &copy; lup lup</p>
+                        </div>
+                        <div class="float-end">
+                            <p>Crafted with <span class="text-danger "><i class="bi bi-heart"></i></span> lup lup
+                        </div>
                     </div>
-                    <div class="float-end">
-                        <p>Crafted with <span class="text-danger "><i class="bi bi-heart"></i></span> lup lup
-                    </div>
-                </div>
-            </footer>
+                </footer>
+            </div>
         </div>
     </div>
     <script src="assets/js/bootstrap.js"></script>
@@ -225,10 +229,12 @@ if (!isset($_SESSION['username'])) {
             }).then((response) => {
                 if (response.value) {
                     window.location.href = link
+                    Swal.fire('Saved!', '', 'success')
                 }
             })
         }
     </script>
+
 
 
 
