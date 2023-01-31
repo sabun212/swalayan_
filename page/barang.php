@@ -169,7 +169,7 @@ include 'koneksi.php';
                                     </button>
                                 </div>
                                 <div class="modal-body">
-                                    <form action="function/proses_barang.php?aksi=update" method="post">
+                                    <form action="function/proses_barang.php?aksi=update" method="post" enctype="multipart/form-data"   >
                                         <div class="form-group position-relative has-icon-left mb-4">
                                             <div class="col-md-4">
                                                 <label>ID Barang</label>

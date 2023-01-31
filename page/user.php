@@ -1,4 +1,100 @@
-<?php $active = "user"; ?>
+<?php
+$toastify = '<script src="assets/extensions/toastify-js/src/toastify.js"></script>';
+if (isset($_SESSION['simpan_user'])) {
+    if ($_SESSION['simpan_user'] === "sukses") {
+        echo '
+        ' . $toastify . '
+        <script>
+        Toastify({
+            text: "Data Berhasil Disimpan!!",
+            duration: 3000,
+            close: true,
+            style: {
+                background: "#5cb85c",
+            }
+        }).showToast();
+        </script>';
+        unset($_SESSION['simpan_user']);
+    } else if ($_SESSION['simpan_user'] === "gagal") {
+        echo '
+        ' . $toastify . '
+        <script>
+        Toastify({
+            text: "Data Gagal Disimpan!!",
+            duration: 3000,
+            close: true,
+            style: {
+                background: "#d9534f",
+            }
+        }).showToast();
+        </script>';
+        unset($_SESSION['simpan_user']);
+    }
+}
+if (isset($_SESSION['update_user'])) {
+    if ($_SESSION['update_user'] === "sukses") {
+        echo '
+        ' . $toastify . '
+        <script>
+        Toastify({
+            text: "Data Berhasil Diupdate!!",
+            duration: 3000,
+            close: true,
+            style: {
+                background: "#5cb85c",
+            }
+        }).showToast();
+        </script>';
+        unset($_SESSION['update_user']);
+    } else if ($_SESSION['update_user'] === "gagal") {
+        echo '
+        ' . $toastify . '
+        <script>
+        Toastify({
+            text: "Data Gagal Diupdate!!",
+            duration: 3000,
+            close: true,
+            style: {
+                background: "#d9534f",
+            }
+        }).showToast();
+        </script>';
+        unset($_SESSION['update_user']);
+    }
+}
+if (isset($_SESSION['delete_user'])) {
+    if ($_SESSION['delete_user'] === "sukses") {
+        echo '
+        ' . $toastify . '
+        <script>
+        Toastify({
+            text: "Data Berhasil Dihapus!!",
+            duration: 3000,
+            close: true,
+            style: {
+                background: "#5cb85c",
+            }
+        }).showToast();
+        </script>';
+        unset($_SESSION['delete_user']);
+    } else if ($_SESSION['delete_user'] === "gagal") {
+        echo '
+        ' . $toastify . '
+        <script>
+        Toastify({
+            text: "Data Gagal Dihapus!!",
+            duration: 3000,
+            close: true,
+            style: {
+                background: "#d9534f",
+            }
+        }).showToast();
+        </script>';
+        unset($_SESSION['delete_user']);
+    }
+}
+
+?>
 
 <?php
 

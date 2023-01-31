@@ -5,7 +5,7 @@ include 'koneksi.php';
 ?>
 <p>
     <button class="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
-        Tambah Pelanggan <i class="bi bi-folder-plus"></i>
+        Tambah Transaksi <i class="bi bi-folder-plus"></i>
     </button>
 </p>
 <section class="section">

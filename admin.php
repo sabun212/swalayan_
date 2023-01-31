@@ -2,9 +2,6 @@
 session_start();
 
 if (!isset($_SESSION['username'])) {
-
-
-
     header("Location: index.php");
 }
 
@@ -185,6 +182,9 @@ if (!isset($_SESSION['username'])) {
                             break;
                         case 'transaksi':
                             include 'page/transaksi.php';
+                            break;
+                        case 'barang1':
+                            include 'page/barang1.php';
                             break;
                     }
                 }
