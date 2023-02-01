@@ -186,6 +186,11 @@ if (!isset($_SESSION['username'])) {
                         case 'barang1':
                             include 'page/barang1.php';
                             break;
+                        case 'dashboard':
+                            include 'dashboard.php';
+                            break;
+                        default:
+                            echo "<script>window.location.href='404.php'</script>";
                     }
                 }
 
@@ -233,6 +238,28 @@ if (!isset($_SESSION['username'])) {
                 }
             })
         }
+
+        function removeRupiah(value) {
+            value.replace(/[0-9]/, "")
+        }
+
+        const rupiah = (number) => {
+            return new Intl.NumberFormat("id-ID", {
+                style: "currency",
+                currency: "IDR"
+            }).format(number);
+        }
+        $(".btn-collapse").click(function() {
+            const collapseId = $(this).attr("href")
+            if ($(this).children("span").html() == 'Open Form') {
+                $(this).children("span").html('Close Form');
+            } else {
+                $(this).children("span").html('Open Form');
+            }
+        });
+        $("[type='number']").keypress(function(evt) {
+            evt.preventDefault();
+        });
     </script>
 
 

@@ -57,7 +57,8 @@ include 'koneksi.php';
                         <div class="form-group row">
                             <label class="col-sm-2 col-form-label">Admin</label>
                             <div class="col-sm-10">
-                                <input type="text" name="id_user" value="<?php echo $_SESSION['id_user']; ?>" readonly class="form-control">
+                                <input type="hidden" name="id_user" value="<?php echo $_SESSION['id_user']; ?>" readonly class="form-control">
+                                <input type="text" value="<?php echo $_SESSION['username']; ?>" readonly class="form-control">
                             </div>
                         </div>
                     </div>
