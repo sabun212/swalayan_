@@ -22,6 +22,9 @@ if (!isset($_SESSION['username'])) {
     <link rel="stylesheet" href="assets/css/pages/simple-datatables.css">
 
 
+    
+
+
 
     <!-- toastify -->
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
@@ -110,6 +113,15 @@ if (!isset($_SESSION['username'])) {
                                 <span>Barang</span>
                             </a>
                         </li>
+                        <li class="sidebar-item <?php
+                                                if (strpos($_SERVER['REQUEST_URI'], 'admin.php?page=laoran') !== false)
+                                                    echo "active";
+                                                ?>">
+                            <a href="admin.php?page=laporan" class='sidebar-link'>
+                                <i class="bi bi-list"></i>
+                                <span>Laporan</span>
+                            </a>
+                        </li>
 
                         <li class="sidebar-title">User </li>
 
@@ -189,6 +201,12 @@ if (!isset($_SESSION['username'])) {
                         case 'dashboard':
                             include 'dashboard.php';
                             break;
+                        case 'laporan':
+                            include 'page/laporan.php';
+                            break;
+                            case 'cetak':
+                                include 'page/cetak.php';
+                                break;
                         default:
                             echo "<script>window.location.href='404.php'</script>";
                     }

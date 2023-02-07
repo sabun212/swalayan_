@@ -36,7 +36,7 @@ include 'koneksi.php';
                         <div class="form-group row">
                             <label class="col-sm-2 col-form-label">Pelanggan</label>
                             <div class="col-sm-10">
-                                <select name="id_pelanggan" class="form-control">
+                                <select name="id_pelanggan" class="form-control" required>
                                     <option value="">Pilih Pelanggan</option>
                                     <?php
                                     $query = mysqli_query($koneksi, "SELECT * FROM pelanggan");
@@ -90,13 +90,13 @@ include 'koneksi.php';
                         <div class="form-group row">
                             <label class="col-sm-2 col-form-label">Jumlah</label>
                             <div class="col-sm-10">
-                                <input type="text" name="jumlah" id="jumlah" onkeyup="hitung()" class="form-control">
+                                <input type="text" name="jumlah" id="jumlah" onkeyup="hitung()" class="form-control" required>
                             </div>
                         </div>
                         <div class="form-group row">
                             <label class="col-sm-2 col-form-label">Total</label>
                             <div class="col-sm-10">
-                                <input type="text" name="total" id="total" readonly class="form-control">
+                                <input type="text" name="total" id="total" readonly class="form-control" required>
                             </div>
                         </div>
                     </div>
@@ -157,6 +157,7 @@ include 'koneksi.php';
                                     <span data-feather='trash-2'></span>
 
                                 </a>
+                                <a href="admin.php?page=cetak&id_transaksi=<?php echo $data['id_transaksi'] ?>" class="btn btn-primary">Cetak</a>
 
                             </td>
 
