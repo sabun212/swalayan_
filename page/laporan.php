@@ -68,8 +68,9 @@
                         <td><?php echo $d['jumlah'] ?></td>
                         <td><?php echo $d['total'] ?></td>
                         <td><?php echo $d['nama_user'] ?></td>
-                        <td><a href="admin.php?page=cetak&id_transaksi=<?php echo $d['id_transaksi'] ?>" class="btn btn-primary">Cetak</a></td>
-                        <a href="struk.php?id_transaksi=<?php echo $d['id_transaksi'] ?>" class="btn btn-success">Print</a>
+                        <td><a href="admin.php?page=cetak&id_transaksi=<?php echo $d['id_transaksi'] ?>" class="btn btn-primary">Cetak</a>
+                            <a href="struk.php?id_transaksi=<?php echo $d['id_transaksi'] ?>" class="btn btn-success">Print</a>
+                        </td>
 
                     </tr>
                 <?php } ?>

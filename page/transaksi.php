@@ -151,13 +151,11 @@ include 'koneksi.php';
                             <td><?php echo $d['total'] ?></td>
                             <td><?php echo $d['nama_user'] ?></td>
                             <td class="text-center">
-
-
                                 <a onclick="swalDelete('function/proses_transaksi.php?aksi=delete&id_transaksi=<?php echo $d['id_transaksi'] ?>')" class='badge bg-danger text-decoration-none'>
                                     <span data-feather='trash-2'></span>
-
                                 </a>
-                                <a href="admin.php?page=cetak&id_transaksi=<?php echo $data['id_transaksi'] ?>" class="btn btn-primary">Cetak</a>
+                                <a href="admin.php?page=cetak&id_transaksi=<?php echo $d['id_transaksi'] ?>" class="btn btn-primary">Cetak</a>
+
 
                             </td>
 

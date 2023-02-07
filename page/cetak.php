@@ -1,69 +1,64 @@
-<script>
-    window.print();
-</script>
-<!DOCTYPE html>
-<html lang="en">
+<style>
+    @media print {
+        body * {
+            visibility: hidden;
+        }
 
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Struk Belanja</title>
-</head>
+        #content,
+        #content * {
+            visibility: visible;
+        }
 
-<body width="600px">
-    <center>
-        <h1><b>e-Swalayan<b></b></h1>
-        <p>Jl. Yos Sudarso KM.8</p>
-        <?php
-        include 'koneksi.php';
-        $query = mysqli_query($koneksi, "SELECT * FROM transaksi, barang, pelanggan, user WHERE
-      transaksi.id_barang = barang.id_barang AND
-      transaksi.id_pelanggan = pelanggan.id_pelanggan AND transaksi.id_user = user.id_user");
-        $data = mysqli_fetch_array($query);
-        ?>
-        <table width="300px">
-            <tr>
-                <td>Invoice</td>
-                <td><?php echo $data['id_transaksi'] ?></td>
-            </tr>
-            <tr>
-                <td>Tanggal</td>
-                <td><?php echo $data['tanggal'] ?></td>
-            </tr>
-            <tr>
-                <td>Kasir</td>
-                <td><?php echo $data['nama_user'] ?></td>
-            </tr>
-        </table>
-        <br>
-        <table width="300px">
-            <tr>
-                <td>ID</td>
-                <td>Nama</td>
-                <td>Jumlah</td>
-                <td>Total</td>
-            </tr>
+        #buttonprint {
+            display: none;
+        }
+    }
+</style>
+<?php
+include 'koneksi.php';
+$id_transaksi = $_GET['id_transaksi'];
+$query2 = mysqli_query($koneksi, "SELECT * FROM `v_struk` where id_transaksi = '$id_transaksi'");
+$row = mysqli_fetch_array($query2);
+// $sql = mysqli_query($koneksi, "SELECT * FROM barang");
+// $row1 = mysqli_fetch_array($sql)
 
+?>
+<div class="card justify-content-start" id="content" style="width:40%;margin:auto;margin-top:30px;">
+    <div class="card-body" style="margin:auto;">
+        <h4 class="card-title">Super Market <img class="col-sm-6" src="assets/images/images.jpg" width="100px" height="110px"></h4>
+        <p class="card-text"><br>
+            JL.MAWAR |
+            No. Telp : 08XXXXXXXX
+            <hr>
+            <?php echo $id_transaksi ?>&nbsp; | &nbsp;
+            MEMBER &nbsp; | &nbsp;
+            BAYAR TUNAI <br>
+            KASIR : <?= $row['nama_user'] ?>
+            <hr>
+        <table cellpadding="4">
             <tr>
-                <td>
-                    <?php echo $data['id_transaksi'] ?>
-                </td>
-                <td>
-                    <?php echo $data['nama_barang'] ?>
-                </td>
-                <td>
-                    <?php echo $data['jumlah'] ?>
-                </td>
-                <td>
-                    <?php echo $data['total'] ?>
-                </td>
+                <th>Nama</th>
+                <th>Qty</th>
+                <th>Harga(pcs)</th>
+                <th>Harga Total*</th>
+            </tr>
+            <tr>
+                <td><?php echo $row['nama_barang'] ?>&nbsp;&nbsp;</td>
+                <td><?php echo $row['jumlah'] ?>&nbsp;&nbsp;</td>
+                <td><?php echo $row['harga'] ?>&nbsp;&nbsp;</td>
+                <td><?php echo $row['total'] ?>&nbsp;</td>
+                </p>
+            </tr>
+            <tr>
+                <td colspan="3">Total : </td>
+                <td>Rp. <?php echo $row['total'] ?></td>
             </tr>
         </table>
-        <br><br><br>
-        <p>Selamat datang kembali</p>
-
-    </center>
-</body>
-
-</html> 
+        <hr>
+        Call Center : 028XXXXXXXXXX |
+        Email : Super_market@example.com
+    </div>
+</div>
+<center>
+    <div class="btn btn-primary mt-4" id="buttonprint" onclick="window.print();">Print</div>
+</center>

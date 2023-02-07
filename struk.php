@@ -17,15 +17,14 @@
         <p>Jl. Yos Sudarso KM.8</p>
         <?php
         include 'koneksi.php';
-        $query = mysqli_query($koneksi, "SELECT * FROM transaksi, barang, pelanggan, user WHERE
-      transaksi.id_barang = barang.id_barang AND
-      transaksi.id_pelanggan = pelanggan.id_pelanggan AND transaksi.id_user = user.id_user");
+        $id_transaksi = $_GET['id_transaksi'];
+        $query = mysqli_query($koneksi, "SELECT * FROM `v_struk` where id_transaksi = '$id_transaksi'");
         $data = mysqli_fetch_array($query);
         ?>
         <table width="300px">
             <tr>
                 <td>Invoice</td>
-                <td><?php echo $data['id_transaksi'] ?></td>
+                <td><?php echo $id_transaksi ?></td>
             </tr>
             <tr>
                 <td>Tanggal</td>
