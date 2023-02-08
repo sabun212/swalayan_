@@ -154,7 +154,8 @@ include 'koneksi.php';
                                 <a onclick="swalDelete('function/proses_transaksi.php?aksi=delete&id_transaksi=<?php echo $d['id_transaksi'] ?>')" class='badge bg-danger text-decoration-none'>
                                     <span data-feather='trash-2'></span>
                                 </a>
-                                <a href="admin.php?page=cetak&id_transaksi=<?php echo $d['id_transaksi'] ?>" class="btn btn-primary">Cetak</a>
+                                <a href="struk.php?id_transaksi=<?php echo $d['id_transaksi'] ?>" class="badge bg-success text-decoration-none">
+                                    <span data-feather='printer'></span></a>
 
 
                             </td>
