@@ -2,9 +2,6 @@
 session_start();
 
 if (!isset($_SESSION['username'])) {
-
-
-
     header("Location: index.php");
 }
 
@@ -23,6 +20,9 @@ if (!isset($_SESSION['username'])) {
     <link rel="shortcut icon" href="assets/images/logo/favicon.png" type="image/png">
     <link rel="stylesheet" href="assets/extensions/simple-datatables/style.css">
     <link rel="stylesheet" href="assets/css/pages/simple-datatables.css">
+
+
+    
 
 
 
@@ -113,6 +113,15 @@ if (!isset($_SESSION['username'])) {
                                 <span>Barang</span>
                             </a>
                         </li>
+                        <li class="sidebar-item <?php
+                                                if (strpos($_SERVER['REQUEST_URI'], 'admin.php?page=laoran') !== false)
+                                                    echo "active";
+                                                ?>">
+                            <a href="admin.php?page=laporan" class='sidebar-link'>
+                                <i class="bi bi-list"></i>
+                                <span>Laporan</span>
+                            </a>
+                        </li>
 
                         <li class="sidebar-title">User </li>
 
@@ -186,6 +195,20 @@ if (!isset($_SESSION['username'])) {
                         case 'transaksi':
                             include 'page/transaksi.php';
                             break;
+                        case 'barang1':
+                            include 'page/barang1.php';
+                            break;
+                        case 'dashboard':
+                            include 'dashboard.php';
+                            break;
+                        case 'laporan':
+                            include 'page/laporan.php';
+                            break;
+                            case 'cetak':
+                                include 'page/cetak.php';
+                                break;
+                        default:
+                            echo "<script>window.location.href='404.php'</script>";
                     }
                 }
 
@@ -233,6 +256,28 @@ if (!isset($_SESSION['username'])) {
                 }
             })
         }
+
+        function removeRupiah(value) {
+            value.replace(/[0-9]/, "")
+        }
+
+        const rupiah = (number) => {
+            return new Intl.NumberFormat("id-ID", {
+                style: "currency",
+                currency: "IDR"
+            }).format(number);
+        }
+        $(".btn-collapse").click(function() {
+            const collapseId = $(this).attr("href")
+            if ($(this).children("span").html() == 'Open Form') {
+                $(this).children("span").html('Close Form');
+            } else {
+                $(this).children("span").html('Open Form');
+            }
+        });
+        $("[type='number']").keypress(function(evt) {
+            evt.preventDefault();
+        });
     </script>
 
 
