@@ -11,7 +11,21 @@ switch ($aksi) {
         $alamat = $_POST['alamat'];
         $no_hp = $_POST['no_hp'];
         $query = mysqli_query($koneksi, "INSERT INTO pelanggan VALUES('$id_pelanggan','$nama_pelanggan','$jenis_kelamin','$alamat','$no_hp')");
-        header("location:../admin.php?page=pelanggan");
+        if ($query) {
+            session_start();
+            $_SESSION['simpan_pelanggan'] = "sukses";
+            echo '
+            <script>
+            window.location.href = "../admin.php?page=pelanggan";
+            </script>';
+        } else {
+            session_start();
+            $_SESSION['simpan_pelanggan'] = "gagal";
+            echo '
+            <script>
+            window.location.href = "../admin.php?page=pelanggan";
+            </script>';
+        };
         break;
 
     case 'update':
@@ -21,11 +35,39 @@ switch ($aksi) {
         $alamat = $_POST['alamat'];
         $no_hp = $_POST['no_hp'];
         $query = mysqli_query($koneksi, "UPDATE pelanggan SET nama_pelanggan = '$nama_pelanggan', jenis_kelamin = '$jenis_kelamin', alamat = '$alamat', no_hp = '$no_hp' WHERE id_pelanggan = '$id_pelanggan'");
-        header("location:../admin.php?page=pelanggan");
+        if ($query) {
+            session_start();
+            $_SESSION['update_pelanggan'] = "sukses";
+            echo '
+            <script>
+            window.location.href = "../admin.php?page=pelanggan";
+            </script>';
+        } else {
+            session_start();
+            $_SESSION['update_pelanggan'] = "gagal";
+            echo '
+            <script>
+            window.location.href = "../admin.php?page=user";
+            </script>';
+        };
         break;
     case 'delete':
         $id_pelanggan = $_GET['id_pelanggan'];
         $query = mysqli_query($koneksi, "DELETE FROM pelanggan WHERE id_pelanggan = '$id_pelanggan'");
-        header("location:../admin.php?page=pelanggan");
+        if ($query) {
+            session_start();
+            $_SESSION['delete_pelanggan'] = "sukses";
+            echo '
+            <script>
+            window.location.href = "../admin.php?page=pelanggan";
+            </script>';
+        } else {
+            session_start();
+            $_SESSION['delete_pelanggan'] = "gagal";
+            echo '
+            <script>
+            window.location.href = "../admin.php?page=pelanggan";
+            </script>';
+        };
         break;
 }

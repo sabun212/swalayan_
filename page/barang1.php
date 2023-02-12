@@ -17,8 +17,8 @@
                             <p class="text-muted mb-0">The best clothes u ever buys</p>
                         </div>
                         <div class="col-12 border-bottom mt-3">
-                            <h3 class="fw-bold mb-1"><i class="fa fa" aria-hidden="true"> <?php echo $d['stok'] ?></i></h3>
-                            <p class="text-muted mb-0">Stok</p>
+                            <h3 class="fw-bold mb-1"><i class="fa fa" aria-hidden="true">Stok</i></h3>
+                            <p class="text-muted mb-0"> <?php echo $d['stok'] ?></p>
                         </div>
                         </ul>
                     </div>

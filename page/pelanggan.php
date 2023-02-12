@@ -1,6 +1,92 @@
 <?php
 
-include 'koneksi.php';
+require_once 'koneksi.php';
+
+$toastify = '<script src="assets/extensions/toastify-js/src/toastify.js"></script>';
+if (isset($_SESSION['simpan_pelanggan'])) {
+    if ($_SESSION['simpan_pelanggan'] === "sukses") {
+        echo '
+        ' . $toastify . '
+        <script>
+        Toastify({
+            text: "Data Berhasil Disimpan!!",
+            duration: 3000,
+            close: true,
+            style: {
+                background: "#5cb85c",
+            }
+        }).showToast();
+        </script>';
+        unset($_SESSION['simpan_pelanggan']);
+    } else if ($_SESSION['simpan_pelanggan'] === "gagal") {
+        echo '
+        ' . $toastify . '
+        <script>
+        Toastify({
+            text: "Data Gagal Disimpan!!",
+            duration: 3000,
+            close: true,
+        }).showToast();
+        </script>';
+        unset($_SESSION['simpan_pelanggan']);
+    }
+}
+if (isset($_SESSION['update_pelanggan'])) {
+    if ($_SESSION['update_pelanggan'] === "sukses") {
+        echo '
+        ' . $toastify . '
+        <script>
+        Toastify({
+            text: "Data Berhasil Diupdate!!",
+            duration: 3000,
+            close: true,
+            style: {
+                background: "#5cb85c",
+            }
+        }).showToast();
+        </script>';
+        unset($_SESSION['update_pelanggan']);
+    } else if ($_SESSION['update_pelanggan'] === "gagal") {
+        echo '
+        ' . $toastify . '
+        <script>
+        Toastify({
+            text: "Data Gagal Diupdate!!",
+            duration: 3000,
+            close: true,
+        }).showToast();
+        </script>';
+        unset($_SESSION['update_pelanggan']);
+    }
+}
+if (isset($_SESSION['delete_pelanggan'])) {
+    if ($_SESSION['delete_pelanggan'] === "sukses") {
+        echo '
+        ' . $toastify . '
+        <script>
+        Toastify({
+            text: "Data Berhasil Dihapus!!",
+            duration: 3000,
+            close: true,
+            style: {
+                background: "#5cb85c",
+            }
+        }).showToast();
+        </script>';
+        unset($_SESSION['delete_pelanggan']);
+    } else if ($_SESSION['delete_pelanggan'] === "gagal") {
+        echo '
+        ' . $toastify . '
+        <script>
+        Toastify({
+            text: "Data Gagal Dihapus!!",
+            duration: 3000,
+            close: true,
+        }).showToast();
+        </script>';
+        unset($_SESSION['delete_pelanggan']);
+    }
+}
 
 ?>
 <p>
@@ -45,7 +131,7 @@ include 'koneksi.php';
                                 <div class="position-relative">
                                     <input type="text" class="form-control" placeholder="Nama Pelanggan" id="first-name-icon" name="nama_pelanggan">
                                     <div class="form-control-icon">
-                                        <i class="bi bi-box-seam"></i>
+                                        <i class="bi bi-person-fill"></i>
                                     </div>
                                 </div>
                             </div>
@@ -75,7 +161,7 @@ include 'koneksi.php';
                                 <div class="position-relative">
                                     <input type="text" class="form-control" placeholder="Alamat" name="alamat">
                                     <div class="form-control-icon">
-                                        <i class="bi bi-phone"></i>
+                                        <i class="bi bi-geo-alt-fill"></i>
                                     </div>
                                 </div>
                             </div>
@@ -217,7 +303,7 @@ include 'koneksi.php';
                                                     <div class="position-relative">
                                                         <select class="form-control select2 input100" name="jenis_kelamin" required>
                                                             <?php
-                                                            if ($d['jenis_kelamin'] == 'Laki-laki') {
+                                                            if ($d['jenis_kelamin'] == 'Laki-Laki') {
                                                                 echo "<option value='Laki-Laki' selected>Laki-Laki</option>";
                                                                 echo "<option value='Perempuan'>Perempuan</option>";
                                                             } else if ($d['jenis_kelamin'] == 'Perempuan') {
@@ -242,7 +328,7 @@ include 'koneksi.php';
                                                     <div class="position-relative">
                                                         <input type="text" class="form-control" placeholder="alamat" name="alamat" value="<?php echo $d['alamat'] ?>" required>
                                                         <div class="form-control-icon">
-                                                            <i class="bi bi-lock"></i>
+                                                            <i class="bi bi-geo-alt-fill"></i>
                                                         </div>
                                                     </div>
                                                 </div>

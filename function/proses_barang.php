@@ -17,8 +17,24 @@ switch ($aksi) {
         move_uploaded_file($_FILES['gambar']['tmp_name'], '../gambar/' . $rand . '_' . $filename);
         $query = mysqli_query($koneksi, "INSERT INTO barang
     VALUES('$id_barang','$nama_barang','$harga','$stok','$newfilename')");
-        header("location:../admin.php?page=barang");
+
+        if ($query) {
+            session_start();
+            $_SESSION['simpan_barang'] = "sukses";
+            echo '
+    <script>
+    window.location.href = "../admin.php?page=barang";
+    </script>';
+        } else {
+            session_start();
+            $_SESSION['simpan_barang'] = "gagal";
+            echo '
+    <script>
+    window.location.href = "../admin.php?page=barang";
+    </script>';
+        };
         break;
+
 
     case 'update':
 
@@ -26,11 +42,26 @@ switch ($aksi) {
         $nama_barang = $_POST['nama_barang'];
         $harga = $_POST['harga'];
         $stok = $_POST['stok'];
-        $filename = $_FILES['gambar']['name'];
-        $newfilename = $rand . '_' . $filename;
-        move_uploaded_file($_FILES['gambar']['tmp_name'], '../gambar/' . $rand . '_' . $filename);
-        $query = mysqli_query($koneksi, "UPDATE barang SET nama_barang = '$nama_barang', harga = '$harga', stok = '$stok' , WHERE id_barang = '$id_barang' ");
-        header("location:../admin.php?page=barang");
+        // $filename = $_FILES['gambar']['name'];
+        // $newfilename = $rand . '_' . $filename;
+        // move_uploaded_file($_FILES['gambar']['tmp_name'], '../gambar/' . $rand . '_' . $filename);
+        $query = mysqli_query($koneksi, "UPDATE barang SET nama_barang = '$nama_barang', harga = '$harga', stok = '$stok'  WHERE id_barang = '$id_barang' ");
+
+        if ($query) {
+            session_start();
+            $_SESSION['update_barang'] = "sukses";
+            echo '
+            <script>
+            window.location.href = "../admin.php?page=barang";
+            </script>';
+        } else {
+            session_start();
+            $_SESSION['update_barang'] = "gagal";
+            echo '
+            <script>
+            window.location.href = "../admin.php?page=barang";
+            </script>';
+        };
         break;
 
 
@@ -41,6 +72,20 @@ switch ($aksi) {
         $file = '../gambar/' . $data['gambar'];
         unlink($file);
         $query = mysqli_query($koneksi, "DELETE FROM barang WHERE id_barang = '$id_barang'");
-        header("location:../admin.php?page=barang");
+        if ($query) {
+            session_start();
+            $_SESSION['delete_barang'] = "sukses";
+            echo '
+            <script>
+            window.location.href = "../admin.php?page=barang";
+            </script>';
+        } else {
+            session_start();
+            $_SESSION['delete_barang'] = "gagal";
+            echo '
+            <script>
+            window.location.href = "../admin.php?page=barang";
+            </script>';
+        };
         break;
 }

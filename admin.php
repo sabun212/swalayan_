@@ -5,6 +5,9 @@ if (!isset($_SESSION['username'])) {
     header("Location: index.php");
 }
 
+$username = $_SESSION['username'];
+
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -21,8 +24,15 @@ if (!isset($_SESSION['username'])) {
     <link rel="stylesheet" href="assets/extensions/simple-datatables/style.css">
     <link rel="stylesheet" href="assets/css/pages/simple-datatables.css">
 
+    <link rel="stylesheet" href="assets/css/main/app.css">
+    <link rel="stylesheet" href="assets/css/main/app-dark.css">
+    <link rel="shortcut icon" href="assets/images/logo/favicon.svg" type="image/x-icon">
+    <link rel="shortcut icon" href="assets/images/logo/favicon.png" type="image/png">
 
-    
+    <link rel="stylesheet" href="assets/css/shared/iconly.css">
+
+
+
 
 
 
@@ -40,7 +50,7 @@ if (!isset($_SESSION['username'])) {
                 <div class="sidebar-header position-relative">
                     <div class="d-flex justify-content-between align-items-center">
                         <div class="logo">
-                            <a href="index.html"><img src="assets/images/logo/logo.svg" alt="Logo" srcset=""></a>
+                            <img src="assets/images/4853433.png" alt="Logo" srcset="">
                         </div>
                         <div class="theme-toggle d-flex gap-2  align-items-center mt-2">
                             <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" aria-hidden="true" role="img" class="iconify iconify--system-uicons" width="20" height="20" preserveAspectRatio="xMidYMid meet" viewBox="0 0 21 21">
@@ -70,8 +80,13 @@ if (!isset($_SESSION['username'])) {
                     <ul class="menu">
                         <li class="sidebar-title">Menu</li>
 
-                        <li class="sidebar-item ">
-                            <a href="dashboard.php" class='sidebar-link'>
+                        <li class="sidebar-item <?php if ("asdasd") {
+                                                    # code...
+                                                } else {
+                                                    # code...
+                                                }
+                                                ?>">
+                            <a href="admin.php" class='sidebar-link'>
                                 <i class="bi bi-grid-fill "></i>
                                 <span>Dashboard</span>
                             </a>
@@ -79,7 +94,8 @@ if (!isset($_SESSION['username'])) {
                         <li class="sidebar-item 
                                     <?php
                                     if (strpos($_SERVER['REQUEST_URI'], 'admin.php?page=user') !== false)
-                                        echo "active";
+                                        echo "active"
+
                                     ?>">
                             <a href="admin.php?page=user" class='sidebar-link'>
                                 <i class="bi bi-person"></i>
@@ -109,12 +125,12 @@ if (!isset($_SESSION['username'])) {
                                                     echo "active";
                                                 ?>">
                             <a href="admin.php?page=barang" class='sidebar-link'>
-                                <i class="bi bi-list"></i>
+                                <i class="bi bi-box-seam-fill"></i>
                                 <span>Barang</span>
                             </a>
                         </li>
                         <li class="sidebar-item <?php
-                                                if (strpos($_SERVER['REQUEST_URI'], 'admin.php?page=laoran') !== false)
+                                                if (strpos($_SERVER['REQUEST_URI'], 'admin.php?page=laporan') !== false)
                                                     echo "active";
                                                 ?>">
                             <a href="admin.php?page=laporan" class='sidebar-link'>
@@ -154,69 +170,143 @@ if (!isset($_SESSION['username'])) {
 
                     </ul>
                 </div>
+
             </div>
         </div>
-        <div id="main">
-            <header class="mb-3">
-                <a href="#" class="burger-btn d-block d-xl-none">
-                    <i class="bi bi-justify fs-3"></i>
-                </a>
-            </header>
-            <div class="page-heading">
-                <div class="page-title">
-                    <div class="row">
-                        <div class="col-12 col-md-6 order-md-1 order-last">
-                            <h3>Halaman Admin</h3>
-                            <p class="text-subtitle text-muted"></p>
-                        </div>
-                        <div class="col-12 col-md-6 order-md-2 order-first">
-                            <nav aria-label="breadcrumb" class="breadcrumb-header float-start float-lg-end">
-                                <ol class="breadcrumb">
-                                    <li class="breadcrumb-item"><a href="admin.php">Dashboard</a></li>
-                                </ol>
-                            </nav>
+        <div id="main" class='layout-navbar'>
+            <header class='mb-3'>
+                <nav class="navbar navbar-expand navbar-light navbar-top bg">
+                    <div class="container-fluid">
+                        <a href="#" class="burger-btn d-block">
+                            <i class="bi bi-justify fs-3"></i>
+                        </a>
+
+                        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                            <span class="navbar-toggler-icon"></span>
+                        </button>
+                        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                            <ul class="navbar-nav ms-auto mb-lg-0">
+
+
+                            </ul>
+                            <div class="dropdown">
+                                <a href="#" data-bs-toggle="dropdown" aria-expanded="false">
+                                    <div class="user-menu d-flex">
+                                        <div class="user-name text-end me-3">
+                                            <h6 class="mb-0 text-gray-600"><?= $username ?></h6>
+                                            <p class="mb-0 text-sm text-gray-600">Administrator</p>
+                                        </div>
+                                        <div class="user-img d-flex align-items-center">
+                                            <div class="avatar avatar-md">
+                                                <img src="assets/images/faces/1.jpg">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </a>
+                                <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdownMenuButton" style="min-width: 11rem;">
+                                    <li>
+                                        <h6 class="dropdown-header">Hello, <?= $username ?> !</h6>
+                                    </li>
+                                    <li><a class="dropdown-item" data-bs-toggle="modal" data-bs-target="#show<?php echo $_SESSION['id_user']; ?>"><i class="icon-mid bi bi-person me-2"></i> My
+                                            Profile</a></li>
+                                    <hr class="dropdown-divider">
+                                    </li>
+                                    <li><a class="dropdown-item bg-danger" href="#"><i class="icon-mid bi bi-box-arrow-left me-2 text-white"></i>
+                                            <span class="text-white"> Logout</span>
+                                        </a></li>
+                                </ul>
+
+
+                            </div>
                         </div>
                     </div>
+                </nav>
+            </header>
+            <div id="main-content">
+
+                <div class="page-heading">
+                    <div class="page-title">
+                        <div class="row">
+
+                            <div class="page-heading">
+                                <div class="page-title">
+                                    <div class="row">
+                                        <div class="col-12 col-md-6 order-md-1 order-last">
+                                            <h3>Halaman Admin</h3>
+                                            <p class="text-subtitle text-muted"></p>
+                                        </div>
+                                        <div class="col-12 col-md-6 order-md-2 order-first">
+                                            <nav aria-label="breadcrumb" class="breadcrumb-header float-start float-lg-end">
+                                                <ol class="breadcrumb">
+                                                    <li class="breadcrumb-item"><a href="admin.php">Dashboard</a></li>
+                                                </ol>
+                                            </nav>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <?php
+
+                                if (isset($_GET['page'])) {
+                                    $page = $_GET['page'];
+                                    switch ($page) {
+                                        case 'user':
+                                            include 'page/user.php';
+                                            break;
+                                        case 'pelanggan':
+                                            include 'page/pelanggan.php';
+                                            break;
+                                        case 'barang':
+                                            include 'page/barang.php';
+                                            break;
+                                        case 'transaksi':
+                                            include 'page/transaksi.php';
+                                            break;
+                                        case 'transaksi1':
+                                            include 'page/transaksi1.php';
+                                            break;
+                                        case 'barang1':
+                                            include 'page/barang1.php';
+                                            break;
+                                        case 'dashboard':
+                                            include 'dashboard.php';
+                                            break;
+                                        case 'laporan':
+                                            include 'page/laporan.php';
+                                            break;
+                                        case 'cetak':
+                                            include 'page/cetak.php';
+                                            break;
+                                        default:
+                                            echo "<script>window.location.href='404.php'</script>";
+                                    }
+                                } else {
+                                    include 'dashboard.php';
+                                }
+
+                                ?>
+                            </div>
+
+
+
+
+
+                        </div>
+
+                    </div>
+                    <div>
+
+                    </div>
                 </div>
-                <?php
-
-                if (isset($_GET['page'])) {
-                    $page = $_GET['page'];
-                    switch ($page) {
-                        case 'user':
-                            include 'page/user.php';
-                            break;
-                        case 'pelanggan':
-                            include 'page/pelanggan.php';
-                            break;
-                        case 'barang':
-                            include 'page/barang.php';
-                            break;
-                        case 'transaksi':
-                            include 'page/transaksi.php';
-                            break;
-                        case 'barang1':
-                            include 'page/barang1.php';
-                            break;
-                        case 'dashboard':
-                            include 'dashboard.php';
-                            break;
-                        case 'laporan':
-                            include 'page/laporan.php';
-                            break;
-                            case 'cetak':
-                                include 'page/cetak.php';
-                                break;
-                        default:
-                            echo "<script>window.location.href='404.php'</script>";
-                    }
-                }
-
-                ?>
             </div>
 
+            <div id="main">
+                <header class="mb-3">
+                    <a href="#" class="burger-btn d-block d-xl-none">
+                        <i class="bi bi-justify fs-3"></i>
+                    </a>
+                </header>
 
-            <div>
                 <footer>
                     <div class="footer clearfix mb-0 text-muted">
                         <div class="float-start">
@@ -227,58 +317,175 @@ if (!isset($_SESSION['username'])) {
                         </div>
                     </div>
                 </footer>
+
+
+
+
+
+
+
+
             </div>
+
         </div>
-    </div>
-    <script src="assets/js/bootstrap.js"></script>
-    <script src="assets/js/app.js"></script>
-    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
-    <script src="assets/extensions/simple-datatables/umd/simple-datatables.js"></script>
-    <script src="assets/js/pages/simple-datatables.js"></script>
 
-    <script>
-        function swalDelete(link) {
-            Swal.fire({
-                title: "Hapus",
-                text: "Apakah Kamu Yakin Ingin Menghapus Data Ini?",
-                icon: "warning",
-                showConfirmButton: true,
-                confirmButtonText: "Hapus",
-                confirmButtonColor: '#42ba96',
-                showCancelButton: true,
-                cancelButtonText: "Batal",
-                cancelButtonColor: '#DC3545',
-            }).then((response) => {
-                if (response.value) {
-                    window.location.href = link
-                    Swal.fire('Saved!', '', 'success')
-                }
-            })
-        }
+        <script src="assets/js/bootstrap.js"></script>
+        <script src="assets/js/app.js"></script>
+        <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
+        <script src="assets/extensions/simple-datatables/umd/simple-datatables.js"></script>
+        <script src="assets/js/pages/simple-datatables.js"></script>
 
-        function removeRupiah(value) {
-            value.replace(/[0-9]/, "")
-        }
-
-        const rupiah = (number) => {
-            return new Intl.NumberFormat("id-ID", {
-                style: "currency",
-                currency: "IDR"
-            }).format(number);
-        }
-        $(".btn-collapse").click(function() {
-            const collapseId = $(this).attr("href")
-            if ($(this).children("span").html() == 'Open Form') {
-                $(this).children("span").html('Close Form');
-            } else {
-                $(this).children("span").html('Open Form');
+        <script>
+            function swalDelete(link) {
+                Swal.fire({
+                    title: "Hapus",
+                    text: "Apakah Kamu Yakin Ingin Menghapus Data Ini?",
+                    icon: "warning",
+                    showConfirmButton: true,
+                    confirmButtonText: "Hapus",
+                    confirmButtonColor: '#42ba96',
+                    showCancelButton: true,
+                    cancelButtonText: "Batal",
+                    cancelButtonColor: '#DC3545',
+                }).then((response) => {
+                    if (response.value) {
+                        window.location.href = link
+                        Swal.fire('Saved!', '', 'success')
+                    }
+                })
             }
-        });
-        $("[type='number']").keypress(function(evt) {
-            evt.preventDefault();
-        });
-    </script>
+
+            function removeRupiah(value) {
+                value.replace(/[0-9]/, "")
+            }
+
+            const rupiah = (number) => {
+                return new Intl.NumberFormat("id-ID", {
+                    style: "currency",
+                    currency: "IDR"
+                }).format(number);
+            }
+            $(".btn-collapse").click(function() {
+                const collapseId = $(this).attr("href")
+                if ($(this).children("span").html() == 'Open Form') {
+                    $(this).children("span").html('Close Form');
+                } else {
+                    $(this).children("span").html('Open Form');
+                }
+            });
+            $("[type='number']").keypress(function(evt) {
+                evt.preventDefault();
+            });
+        </script>
+
+        <?php
+        include 'koneksi.php';
+        $no = 1;
+        $data = mysqli_query($koneksi, "select * from user");
+        while ($d = mysqli_fetch_array($data)) {
+        ?>
+            <div class="modal-primary me-1 mb-1 d-inline-block">
+
+                <!--primary theme Modal -->
+                <div class="modal fade text-left" id="show<?php echo $d['id_user'] ?>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel33" aria-hidden="true" aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable" role="document">
+                        <div class="modal-content">
+                            <div class=" modal-header bg-primary">
+                                <h5 class="modal-title white" id="myModalLabel133">
+                                    Profile
+                                </h5>
+                                <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+                                    <i data-feather="x"></i>
+                                </button>
+                            </div>
+                            <div class="modal-body">
+                                <form action="function/proses_user.php?aksi=update" method="post">
+                                    <div class="form-group position-relative has-icon-left mb-4">
+                                        <div class="col-md-4">
+                                            <label>ID User</label>
+                                        </div>
+                                        <div class="col-md-12">
+                                            <div class="form-group has-icon-left">
+                                                <div class="position-relative">
+                                                    <input type="text" class="form-control" placeholder="username" id="first-name-icon" name="id_user" value="<?php echo $d['id_user'] ?>" readonly>
+                                                    <div class="form-control-icon">
+                                                        <i class="bi bi-file-person"></i>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-md-4">
+                                            <label>Username</label>
+                                        </div>
+                                        <div class="col-md-12">
+                                            <div class="form-group has-icon-left">
+                                                <div class="position-relative">
+                                                    <input type="text" class="form-control" readonly placeholder="username" id="first-name-icon" name="username" value="<?php echo $d['username'] ?>" required>
+                                                    <div class="form-control-icon">
+                                                        <i class="bi bi-file-person"></i>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-md-4">
+                                            <label>Nama</label>
+                                        </div>
+                                        <div class="col-md-12">
+                                            <div class="form-group has-icon-left">
+                                                <div class="position-relative">
+                                                    <input type="text" class="form-control" readonly placeholder="Name" id="first-name-icon" name="nama_user" value="<?php echo $d['nama_user'] ?>" required>
+                                                    <div class="form-control-icon">
+                                                        <i class="bi bi-person-fill"></i>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-md-4">
+                                            <label>Jenis Kelamin</label>
+                                        </div>
+                                        <div class="col-md-12">
+                                            <div class="form-group has-icon-left">
+                                                <div class="position-relative">
+                                                    <input type="text" class="form-control" readonly id="first-name-icon" name="jenis_kelamin" value="<?php echo $d['jenis_kelamin'] ?>" required>
+                                                    <div class="form-control-icon">
+                                                        <i class="bi bi-gender-ambiguous"></i>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <label>No HP</label>
+                                        </div>
+                                        <div class="col-md-12">
+                                            <div class="form-group has-icon-left">
+                                                <div class="position-relative">
+                                                    <input type="number" class="form-control" readonly placeholder="NO HP" name="no_hp" value="<?php echo $d['no_hp'] ?>" required>
+                                                    <div class="form-control-icon">
+                                                        <i class="bi bi-phone"></i>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="form-group col-md-8 offset-md-4">
+                                        </div>
+
+
+
+
+                                    </div>
+
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+                </form>
+            </div>
+        <?php } ?>
 
 
 

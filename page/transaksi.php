@@ -2,6 +2,101 @@
 
 include 'koneksi.php';
 
+$toastify = '<script src="assets/extensions/toastify-js/src/toastify.js"></script>';
+if (isset($_SESSION['simpan_transaksi'])) {
+    if ($_SESSION['simpan_transaksi'] === "sukses") {
+        echo '
+        ' . $toastify . '
+        <script>
+        Toastify({
+            text: "Transaksi berhasil!!",
+            duration: 3000,
+            close: true,
+            style: {
+                background: "#5cb85c",
+            }
+        }).showToast();
+        </script>';
+        unset($_SESSION['simpan_transaksi']);
+    } else if ($_SESSION['simpan_transaksi'] === "gagal") {
+        echo '
+        ' . $toastify . '
+        <script>
+        Toastify({
+            text: "Data Gagal Disimpan!!",
+            duration: 3000,
+            close: true,
+            style: {
+                background: "#d9534f",
+            }
+        }).showToast();
+        </script>';
+        unset($_SESSION['simpan_transaksi']);
+    }
+}
+if (isset($_SESSION['update_transaksi'])) {
+    if ($_SESSION['update_transaksi'] === "sukses") {
+        echo '
+        ' . $toastify . '
+        <script>
+        Toastify({
+            text: "Data Berhasil Diupdate!!",
+            duration: 3000,
+            close: true,
+            style: {
+                background: "#5cb85c",
+            }
+        }).showToast();
+        </script>';
+        unset($_SESSION['update_transaksi']);
+    } else if ($_SESSION['update_transaksi'] === "gagal") {
+        echo '
+        ' . $toastify . '
+        <script>
+        Toastify({
+            text: "Data Gagal Diupdate!!",
+            duration: 3000,
+            close: true,
+            style: {
+                background: "#d9534f",
+            }
+        }).showToast();
+        </script>';
+        unset($_SESSION['update_transaksi']);
+    }
+}
+if (isset($_SESSION['delete_transaksi'])) {
+    if ($_SESSION['delete_transaksi'] === "sukses") {
+        echo '
+        ' . $toastify . '
+        <script>
+        Toastify({
+            text: "Data Berhasil Dihapus!!",
+            duration: 3000,
+            close: true,
+            style: {
+                background: "#5cb85c",
+            }
+        }).showToast();
+        </script>';
+        unset($_SESSION['delete_transaksi']);
+    } else if ($_SESSION['delete_transaksi'] === "gagal") {
+        echo '
+        ' . $toastify . '
+        <script>
+        Toastify({
+            text: "Data Gagal Dihapus!!",
+            duration: 3000,
+            close: true,
+            style: {
+                background: "#d9534f",
+            }
+        }).showToast();
+        </script>';
+        unset($_SESSION['delete_transaksi']);
+    }
+}
+
 ?>
 <p>
     <button class="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
@@ -25,15 +120,11 @@ include 'koneksi.php';
                 $huruf = "INV";
                 $idtransaksi = $huruf . sprintf("%03s", $urutan);
                 ?>
-                <div class="row">
+                <input type="text" id="id_transaksi" class="form-control" value="<?= $idtransaksi ?>" name="id_transaksi" hidden />
+                <div class="">
                     <div class="col-md-6">
-                        <div class="form-group row">
-                            <label class="col-sm-2 col-form-label">ID Transaksi</label>
-                            <div class="col-sm-10">
-                                <input type="text" name="id_transaksi" value="<?php echo $idtransaksi ?>" readonly class="form-control">
-                            </div>
-                        </div>
-                        <div class="form-group row">
+
+                        <div class="form-group ">
                             <label class="col-sm-2 col-form-label">Pelanggan</label>
                             <div class="col-sm-10">
                                 <select name="id_pelanggan" class="form-control" required>
@@ -48,22 +139,22 @@ include 'koneksi.php';
                                 </select>
                             </div>
                         </div>
-                        <div class="form-group row">
-                            <label class="col-sm-2 col-form-label">Tanggal</label>
+                        <div class="form-group ">
+                            <!-- <label class="col-sm-2 col-form-label">Tanggal</label> -->
                             <div class="col-sm-10">
-                                <input type="text" name="tanggal" <?php $Now = new DateTime('now', new DateTimeZone('Asia/Jakarta')); ?> value="<?php echo $Now->format('Y-m-d H:i:s'); ?>" class="form-control">
+                                <input type="hidden" name="tanggal" readonly <?php $Now = new DateTime('now', new DateTimeZone('Asia/Jakarta')); ?> value="<?php echo $Now->format('Y-m-d H:i:s'); ?>" class="form-control">
                             </div>
                         </div>
-                        <div class="form-group row">
-                            <label class="col-sm-2 col-form-label">Admin</label>
+                        <div class="form-group ">
+                            <!-- <label class="col-sm-2 col-form-label">Admin</label> -->
                             <div class="col-sm-10">
                                 <input type="hidden" name="id_user" value="<?php echo $_SESSION['id_user']; ?>" readonly class="form-control">
-                                <input type="text" value="<?php echo $_SESSION['username']; ?>" readonly class="form-control">
+                                <!-- <input type="text" value="<?php echo $_SESSION['username']; ?>" readonly class="form-control"> -->
                             </div>
                         </div>
                     </div>
                     <div class="col-md-6">
-                        <div class="form-group row">
+                        <div class="form-group ">
                             <label class="col-sm-2 col-form-label">Barang</label>
                             <div class="col-sm-10">
                                 <select name="id_barang" id="id_barang" onchange="changeValueBarang(this.value)" class="form-control">
@@ -81,29 +172,30 @@ include 'koneksi.php';
                                 </select>
                             </div>
                         </div>
-                        <div class="form-group row">
+                        <div class="form-group ">
                             <label class="col-sm-2 col-form-label">Harga</label>
                             <div class="col-sm-10">
-                                <input type="text" name="harga" id="harga" readonly class="form-control">
+                                <input type="number" name="harga" id="harga" readonly class="form-control">
                             </div>
                         </div>
-                        <div class="form-group row">
+                        <div class="form-group ">
                             <label class="col-sm-2 col-form-label">Jumlah</label>
                             <div class="col-sm-10">
-                                <input type="text" name="jumlah" id="jumlah" onkeyup="hitung()" class="form-control" required>
+                                <input type="number" name="jumlah" id="jumlah" onkeyup="hitung()" class="form-control" required>
                             </div>
                         </div>
-                        <div class="form-group row">
+                        <div class="form-group ">
                             <label class="col-sm-2 col-form-label">Total</label>
                             <div class="col-sm-10">
-                                <input type="text" name="total" id="total" readonly class="form-control" required>
+                                <input type="number" name="total" id="total" readonly class="form-control" required>
+
                             </div>
                         </div>
                     </div>
                 </div>
                 <div class="card-footer">
-                    <button type="reset" class="btn btn-default">Reset</button></button>
-                    <button type="submit" class="btn btn-info  float-right">Simpan</button>
+                    <button type="reset" class="btn btn-info">Reset</button></button>
+                    <button type="submit" class="btn btn-primary  float-right">Simpan</button>
                 </div>
             </form>
         </div>
@@ -154,9 +246,7 @@ include 'koneksi.php';
                                 <a onclick="swalDelete('function/proses_transaksi.php?aksi=delete&id_transaksi=<?php echo $d['id_transaksi'] ?>')" class='badge bg-danger text-decoration-none'>
                                     <span data-feather='trash-2'></span>
                                 </a>
-                                <a href="admin.php?page=cetak&id_transaksi=<?php echo $d['id_transaksi'] ?>" class="btn btn-primary">Cetak</a>
-
-
+                                <a href="struk.php?id_transaksi=<?php echo $d['id_transaksi'] ?>" class="badge bg-success text-decoration-none"><span data-feather='printer'></span></a>
                             </td>
 
                         </tr>
