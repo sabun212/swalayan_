@@ -51,7 +51,7 @@ if ($_SESSION['status'] == "login") {
 						if ($_GET['pesan'] == "gagal") {
 							echo "<div class='alert alert-danger'>Username atau Password salah!</div>";
 						} else if ($_GET['pesan'] == "logout") {
-							echo "<div class='alert alert-danger'>Anda sudah Logout!</div>";
+							echo "<div class='alert alert-success'>Anda sudah Logout!</div>";
 						} else if ($_GET['pesan'] == "belum_login") {
 							echo "<div class='alert alert-danger'>Anda harus login untuk mengakses halaman admin!</div>";
 						}

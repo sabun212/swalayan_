@@ -211,8 +211,27 @@ $username = $_SESSION['username'];
                                             Profile</a></li>
                                     <hr class="dropdown-divider">
                                     </li>
-                                    <li><a class="dropdown-item bg-danger" href="#"><i class="icon-mid bi bi-box-arrow-left me-2 text-white"></i>
+                                    <li><a class="dropdown-item bg-danger" href="logout.php" id="logout2"><i class="icon-mid bi bi-box-arrow-left me-2 text-white"></i>
                                             <span class="text-white"> Logout</span>
+                                            <script>
+                                                document.getElementById("logout2").addEventListener("click", function(event) {
+                                                    event.preventDefault(); //mencegah link dijalankan
+                                                    Swal.fire({
+                                                        title: 'Apakah Anda yakin ingin logout?',
+                                                        icon: 'warning',
+                                                        showCancelButton: true,
+                                                        confirmButtonColor: '#3085d6',
+                                                        cancelButtonColor: '#d33',
+                                                        confirmButtonText: 'Ya, Logout!  ',
+                                                        cancelButtonText: 'Tidak, batalkan!'
+                                                    }).then((result) => {
+                                                        if (result.value) {
+                                                            // Apabila tombol 'Ya' diklik, redirect ke halaman logout
+                                                            window.location.href = "logout.php";
+                                                        }
+                                                    });
+                                                });
+                                            </script>
                                         </a></li>
                                 </ul>
 
